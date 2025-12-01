@@ -7,6 +7,7 @@ import GameBoard from "./GameBoard";
 import GameSidebar from "./GameSidebar";
 import { useGameLoop } from "@/hooks/useGameLoop";
 import { useToast } from "@/hooks/use-toast";
+import GameControls from "./GameControls";
 
 const generateDecorations = (count: number, path: {x:number, y:number}[]): Decoration[] => {
     const decorations: Decoration[] = [];
@@ -192,6 +193,43 @@ export default function GameClient() {
     handleDrop(gridX, gridY);
   };
 
+  const handlePause = () => {
+    setGameState(prev => ({
+        ...prev,
+        status: prev.status === 'paused' ? 'playing' : 'paused'
+    }));
+  };
+
+  const handleSave = () => {
+      try {
+          localStorage.setItem('towerDefenseSave', JSON.stringify(gameState));
+          toast({ title: 'Game Saved!' });
+      } catch (error) {
+          console.error("Failed to save game", error);
+          toast({ variant: "destructive", title: 'Save Failed', description: 'Could not save game state.' });
+      }
+  };
+
+  const handleLoad = () => {
+      try {
+          const savedState = localStorage.getItem('towerDefenseSave');
+          if (savedState) {
+              const loadedState = JSON.parse(savedState);
+              // Make sure to reset transient state properties
+              loadedState.status = 'paused';
+              enemiesToSpawnRef.current = [];
+              if (spawnIntervalRef.current) clearInterval(spawnIntervalRef.current);
+              setGameState(loadedState);
+              toast({ title: 'Game Loaded!', description: 'Press Resume to continue.' });
+          } else {
+              toast({ variant: "destructive", title: 'Load Failed', description: 'No save file found.' });
+          }
+      } catch (error) {
+          console.error("Failed to load game", error);
+          toast({ variant: "destructive", title: 'Load Failed', description: 'Could not load game state.' });
+      }
+  };
+
   return (
     <div id="game-container">
       <GameBoard
@@ -201,7 +239,14 @@ export default function GameClient() {
         onDragLeave={handleDragLeave}
         onDrop={handleDropEvent}
       />
-      <GameSidebar gameState={gameState} onDragStart={handleDragStart} onStartWave={handleStartWave} />
+      <GameSidebar 
+        gameState={gameState} 
+        onDragStart={handleDragStart} 
+        onStartWave={handleStartWave} 
+        onPause={handlePause}
+        onSave={handleSave}
+        onLoad={handleLoad}
+      />
     </div>
   );
 }

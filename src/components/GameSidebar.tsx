@@ -6,11 +6,15 @@ import { TOWERS } from "@/lib/game-config";
 import type { GameState, TowerData, PlacedTower } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { drawRealisticTower } from "@/components/GameBoard";
+import GameControls from "./GameControls";
 
 interface GameSidebarProps {
   gameState: GameState;
   onDragStart: (tower: TowerData) => void;
   onStartWave: () => void;
+  onPause: () => void;
+  onSave: () => void;
+  onLoad: () => void;
 }
 
 const TowerPreview = ({ tower }: { tower: TowerData }) => {
@@ -61,7 +65,7 @@ const TowerPreview = ({ tower }: { tower: TowerData }) => {
 }
 
 
-export default function GameSidebar({ gameState, onDragStart, onStartWave }: GameSidebarProps) {
+export default function GameSidebar({ gameState, onDragStart, onStartWave, onPause, onSave, onLoad }: GameSidebarProps) {
   const [selectedTower, setSelectedTower] = useState<TowerData | null>(null);
 
   const handleTowerClick = (tower: TowerData) => {
@@ -117,6 +121,8 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
           );
         })}
       </div>
+
+      <GameControls onPause={onPause} onSave={onSave} onLoad={onLoad} gameState={gameState} />
 
       <div id="stats">
         <div className="stat">Lives: <span id="lives">{gameState.lives}</span></div>
