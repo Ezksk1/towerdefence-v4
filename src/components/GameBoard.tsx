@@ -156,7 +156,8 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
     ctx.save();
     ctx.translate(x, y);
 
-    if (e.type === 'tank') {
+    if (e.type === 'tank' || e.type === 'heavy_tank') {
+        const isHeavy = e.type === 'heavy_tank';
         ctx.fillStyle = 'rgba(0,0,0,0.5)';
         ctx.fillRect(-20, -16, 40, 32);
         ctx.fillStyle = '#1b1b1b';
@@ -167,9 +168,9 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
             ctx.fillRect(i, -16, 2, 8);
             ctx.fillRect(i, 8, 2, 8);
         }
-        ctx.fillStyle = '#388E3C';
+        ctx.fillStyle = isHeavy ? '#2E7D32' : '#388E3C';
         ctx.fillRect(-18, -10, 36, 20);
-        ctx.fillStyle = '#4CAF50';
+        ctx.fillStyle = isHeavy ? '#388E3C' : '#4CAF50';
         ctx.beginPath();
         ctx.arc(0, 0, 10, 0, Math.PI * 2);
         ctx.fill();
@@ -177,13 +178,13 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.fillStyle = '#2E7D32';
-        ctx.fillRect(0, -3, 22, 6);
+        ctx.fillRect(0, -3, isHeavy ? 28 : 22, isHeavy ? 8 : 6);
         ctx.fillStyle = '#1b5e20';
         ctx.beginPath();
         ctx.arc(0, 0, 4, 0, Math.PI * 2);
         ctx.fill();
     } else if (e.type === 'humvee') {
-        ctxfillStyle = 'rgba(0,0,0,0.4)';
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
         ctx.beginPath();
         ctx.ellipse(0, 0, 16, 10, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -220,15 +221,18 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
         ctx.fill();
         ctx.fillRect(-3, -5, 6, 1);
 
-    } else if (e.type === 'krampus') {
+    } else if (e.type === 'krampus' || e.type === 'boss') {
+        const isBoss = e.type === 'boss';
         // Body
-        ctx.fillStyle = '#5D4037';
+        ctx.fillStyle = isBoss ? '#880E4F' : '#5D4037';
         ctx.fillRect(-12, -20, 24, 40);
         // Head
-        ctx.fillStyle = '#3E2723';
+        ctx.fillStyle = isBoss ? '#C2185B' :'#3E2723';
         ctx.fillRect(-10, -18, 20, 15);
         // Horns
-        ctx.fillStyle = '#E0E0E0';
+        ctx.fillStyle = isBoss ? '#F8BBD0' : '#E0E0E0';
+        ctx.strokeStyle = isBoss ? '#AD1457' : '#9E9E9E';
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(-8, -18); ctx.quadraticCurveTo(-15, -25, -12, -30); ctx.stroke();
         ctx.moveTo(8, -18); ctx.quadraticCurveTo(15, -25, 12, -30); ctx.stroke();
@@ -236,6 +240,22 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
         ctx.fillStyle = 'red';
         ctx.beginPath(); ctx.arc(-4, -12, 2, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(4, -12, 2, 0, Math.PI * 2); ctx.fill();
+    } else if (e.type === 'jet') {
+        ctx.fillStyle = '#37474F';
+        ctx.beginPath();
+        ctx.moveTo(-20, 0);
+        ctx.lineTo(10, -8);
+        ctx.lineTo(20, 0);
+        ctx.lineTo(10, 8);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#B0BEC5';
+        ctx.fillRect(-10, -3, 20, 6);
+
+        ctx.fillStyle = '#1976D2';
+        ctx.fillRect(10, -2, 5, 4);
+
     } else { // Troop, elf, toy soldier
         ctx.fillStyle = 'rgba(0,0,0,0.3)';
         ctx.beginPath();

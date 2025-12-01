@@ -92,6 +92,7 @@ export interface EnemyData {
   color: string;
   flying: boolean;
   size: { width: number, height: number };
+  type: string;
 }
 
 export interface ActiveEnemy extends EnemyData {

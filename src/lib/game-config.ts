@@ -23,14 +23,14 @@ export const GAME_CONFIG = {
   WAVE_TIMER_DURATION: 15,
 };
 
-export const TOWERS: Record<string, TowerData> = {
+export const TOWERS: Record<TowerId, TowerData> = {
     turret: { id: 'turret', name: 'Turret', cost: 50, range: 120, damage: 10, rate: 40, color: '#4CAF50', ...getTowerIcon('turret_icon') },
     sniper: { id: 'sniper', name: 'Sniper', cost: 100, range: 250, damage: 40, rate: 100, color: '#2196F3', ...getTowerIcon('sniper_icon') },
     blaster: { id: 'blaster', name: 'Blaster', cost: 150, range: 90, damage: 5, rate: 10, color: '#FF9800', ...getTowerIcon('blaster_icon') },
     bomber: { id: 'bomber', name: 'Bomber', cost: 200, range: 140, damage: 20, rate: 80, color: '#F44336', splash: 50, ...getTowerIcon('bomber_icon') },
     rapid_fire: { id: 'rapid_fire', name: 'Rapid', cost: 75, range: 100, damage: 3, rate: 8, color: '#FFEB3B', ...getTowerIcon('rapid_fire_icon') },
     m4_trooper: { id: 'm4_trooper', name: 'M4 Trooper', cost: 100, range: 120, damage: 15, rate: 30, color: '#795548', ...getTowerIcon('m4_trooper_icon') },
-    sniper_barrett: { id: 'barrett_50', name: 'Barrett .50', cost: 350, range: 400, damage: 150, rate: 120, color: '#3E2723', ...getTowerIcon('barrett_50_icon') },
+    barrett_50: { id: 'barrett_50', name: 'Barrett .50', cost: 350, range: 400, damage: 150, rate: 120, color: '#3E2723', ...getTowerIcon('barrett_50_icon') },
     m2_browning: { id: 'm2_browning', name: 'M2 Browning', cost: 250, range: 180, damage: 25, rate: 10, color: '#212121', ...getTowerIcon('m2_browning_icon') },
     m1_abrams: { id: 'm1_abrams', name: 'M1 Abrams', cost: 600, range: 250, damage: 80, rate: 80, color: '#4CAF50', splash: 60, ...getTowerIcon('m1_abrams_icon') },
     apache: { id: 'apache', name: 'Apache', cost: 800, range: 300, damage: 40, rate: 15, color: '#607D8B', splash: 30, ...getTowerIcon('apache_icon') },
@@ -97,14 +97,17 @@ export const TOWERS: Record<string, TowerData> = {
 const baseHp = (wave: number) => 10 + wave * 2;
 
 export const ENEMIES: Record<string, EnemyData> = {
-  troop: { id: 'troop', name: 'Troop', speed: 1.0, baseHp: 10, hp: baseHp, color: '#5D4037', flying: false, size: { width: 10, height: 10 } },
-  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: '#8D6E63', flying: false, size: { width: 25, height: 18 } },
-  tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: '#388E3C', flying: false, size: { width: 35, height: 25 } },
-  reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 8, hp: (w) => baseHp(w) * 0.8, color: '#795548', flying: false, size: { width: 12, height: 12 } },
-  elf_warrior: { id: 'elf_warrior', name: 'Elf Warrior', speed: 1.5, baseHp: 12, hp: (w) => baseHp(w) * 1.2, color: '#2E7D32', flying: false, size: { width: 10, height: 10 } },
-  toy_soldier: { id: 'toy_soldier', name: 'Toy Soldier', speed: 1.2, baseHp: 15, hp: (w) => baseHp(w) * 1.5, color: '#D32F2F', flying: false, size: { width: 10, height: 10 } },
-  angry_snowman: { id: 'angry_snowman', name: 'Angry Snowman', speed: 0.8, baseHp: 100, hp: (w) => baseHp(w) * 10, color: '#FFFFFF', flying: false, size: { width: 20, height: 20 } },
-  krampus: { id: 'krampus', name: 'Krampus', speed: 1.0, baseHp: 500, hp: (w) => baseHp(w) * 50, color: '#3E2723', flying: false, size: { width: 30, height: 30 } },
+  troop: { id: 'troop', name: 'Troop', speed: 1.0, baseHp: 10, hp: baseHp, color: '#5D4037', flying: false, size: { width: 10, height: 10 }, type: 'troop' },
+  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: '#8D6E63', flying: false, size: { width: 25, height: 18 }, type: 'humvee' },
+  tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: '#388E3C', flying: false, size: { width: 35, height: 25 }, type: 'tank' },
+  heavy_tank: { id: 'heavy_tank', name: 'Heavy Tank', speed: 0.4, baseHp: 200, hp: (w) => baseHp(w) * 20.0, color: '#1B5E20', flying: false, size: { width: 45, height: 30 }, type: 'heavy_tank' },
+  jet: { id: 'jet', name: 'Jet', speed: 4.0, baseHp: 40, hp: (w) => baseHp(w) * 4.0, color: '#455A64', flying: true, size: { width: 30, height: 30 }, type: 'jet' },
+  boss: { id: 'boss', name: 'Boss', speed: 0.5, baseHp: 1000, hp: (w) => baseHp(w) * 100.0, color: '#C62828', flying: false, size: { width: 50, height: 50 }, type: 'boss' },
+  reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 8, hp: (w) => baseHp(w) * 0.8, color: '#795548', flying: false, size: { width: 12, height: 12 }, type: 'reindeer' },
+  elf_warrior: { id: 'elf_warrior', name: 'Elf Warrior', speed: 1.5, baseHp: 12, hp: (w) => baseHp(w) * 1.2, color: '#2E7D32', flying: false, size: { width: 10, height: 10 }, type: 'elf_warrior' },
+  toy_soldier: { id: 'toy_soldier', name: 'Toy Soldier', speed: 1.2, baseHp: 15, hp: (w) => baseHp(w) * 1.5, color: '#D32F2F', flying: false, size: { width: 10, height: 10 }, type: 'toy_soldier' },
+  angry_snowman: { id: 'angry_snowman', name: 'Angry Snowman', speed: 0.8, baseHp: 100, hp: (w) => baseHp(w) * 10, color: '#FFFFFF', flying: false, size: { width: 20, height: 20 }, type: 'angry_snowman' },
+  krampus: { id: 'krampus', name: 'Krampus', speed: 1.0, baseHp: 500, hp: (w) => baseHp(w) * 50, color: '#3E2723', flying: false, size: { width: 30, height: 30 }, type: 'krampus' },
 };
 
 export const LEVELS: LevelData[] = [
@@ -139,24 +142,24 @@ const complexPathPoints = [
 LEVELS[1].path = rasterizePath(complexPathPoints);
 
 export const ENEMIES_BY_WAVE: Record<number, EnemyId[]> = {
-    1:  [...Array(15).fill('troop'), ...Array(10).fill('reindeer')],
+    1:  [...Array(5).fill('reindeer'), ...Array(15).fill('troop')],
     2:  [...Array(10).fill('troop'), ...Array(15).fill('elf_warrior'), ...Array(5).fill('toy_soldier')],
     3:  [...Array(20).fill('elf_warrior'), ...Array(15).fill('toy_soldier'), ...Array(5).fill('humvee')],
     4:  [...Array(20).fill('reindeer'), ...Array(15).fill('humvee'), ...Array(5).fill('tank'), ...Array(2).fill('angry_snowman')],
-    5:  [...Array(15).fill('humvee'), ...Array(10).fill('tank'), ...Array(10).fill('toy_soldier')],
-    6:  [...Array(10).fill('humvee'), ...Array(15).fill('tank'), ...Array(5).fill('angry_snowman')],
-    7:  [...Array(25).fill('tank')],
-    8:  [...Array(10).fill('tank'), ...Array(15).fill('humvee'), ...Array(30).fill('troop')],
-    9:  [...Array(30).fill('tank'), ...Array(15).fill('humvee'), ...Array(10).fill('angry_snowman')],
-    10: [...Array(20).fill('tank'), ...Array(1).fill('krampus')],
-    11: [...Array(20).fill('troop'), ...Array(20).fill('humvee'), ...Array(15).fill('tank')],
-    12: [...Array(30).fill('reindeer'), ...Array(20).fill('humvee')],
-    13: [...Array(25).fill('humvee'), ...Array(20).fill('tank')],
-    14: [...Array(35).fill('tank')],
-    15: [...Array(30).fill('humvee'), ...Array(25).fill('tank')],
-    16: [...Array(30).fill('tank'), ...Array(20).fill('reindeer'), ...Array(20).fill('troop')],
-    17: [...Array(40).fill('tank'), ...Array(20).fill('humvee')],
-    18: [...Array(50).fill('tank')],
-    19: [...Array(60).fill('humvee')],
-    20: [...Array(40).fill('tank'), ...Array(20).fill('angry_snowman'), ...Array(2).fill('krampus')],
+    5:  [...Array(25).fill('humvee'), ...Array(10).fill('tank'), ...Array(15).fill('toy_soldier')],
+    6:  [...Array(15).fill('humvee'), ...Array(20).fill('tank'), ...Array(5).fill('angry_snowman')],
+    7:  [...Array(30).fill('tank')],
+    8:  [...Array(20).fill('tank'), ...Array(20).fill('humvee'), ...Array(30).fill('troop')],
+    9:  [...Array(35).fill('tank'), ...Array(15).fill('humvee'), ...Array(10).fill('angry_snowman')],
+    10: [...Array(25).fill('tank'), ...Array(1).fill('krampus')],
+    11: [...Array(25).fill('troop'), ...Array(25).fill('humvee'), ...Array(20).fill('tank')],
+    12: [...Array(40).fill('reindeer'), ...Array(25).fill('humvee')],
+    13: [...Array(30).fill('humvee'), ...Array(25).fill('tank')],
+    14: [...Array(40).fill('tank')],
+    15: [...Array(20).fill('humvee'), ...Array(30).fill('tank'), ...Array(5).fill('jet')],
+    16: [...Array(20).fill('tank'), ...Array(10).fill('heavy_tank'), ...Array(20).fill('reindeer'), ...Array(20).fill('troop')],
+    17: [...Array(40).fill('tank'), ...Array(15).fill('heavy_tank'), ...Array(10).fill('jet')],
+    18: [...Array(60).fill('tank'), ...Array(10).fill('heavy_tank')],
+    19: [...Array(70).fill('humvee'), ...Array(15).fill('jet')],
+    20: [...Array(30).fill('tank'), ...Array(20).fill('heavy_tank'), ...Array(20).fill('angry_snowman'), ...Array(2).fill('krampus'), ...Array(1).fill('boss')],
 };
