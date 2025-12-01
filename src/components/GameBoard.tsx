@@ -33,11 +33,13 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
     const color = t.color || '#ccc';
     const type = t.name.toLowerCase();
 
+    // Shadow
     ctx.fillStyle = 'rgba(0,0,0,0.4)';
     ctx.beginPath();
     ctx.ellipse(x + 4, y + 4, 20, 14, 0, 0, Math.PI * 2);
     ctx.fill();
 
+    // Base platform
     const gradBase = ctx.createRadialGradient(x - 5, y - 5, 5, x, y, 18);
     gradBase.addColorStop(0, '#666');
     gradBase.addColorStop(0.7, '#444');
@@ -46,11 +48,11 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
     ctx.beginPath();
     ctx.arc(x, y, 18, 0, Math.PI * 2);
     ctx.fill();
-
     ctx.strokeStyle = '#1a1a1a';
     ctx.lineWidth = 2;
     ctx.stroke();
 
+    // Base bolts
     ctx.fillStyle = '#333';
     for (let i = 0; i < 8; i++) {
         const angle = (i / 8) * Math.PI * 2;
@@ -65,7 +67,8 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
     ctx.translate(x, y);
     ctx.rotate(t.angle || 0);
 
-    if (type.includes('turret')) {
+    // --- Tower Specific Designs ---
+    if (type.includes('turret') || type.includes('trooper') || type.includes('browning')) {
         const gradBody = ctx.createRadialGradient(-3, -3, 2, 0, 0, 12);
         gradBody.addColorStop(0, lightenColor(color, 40));
         gradBody.addColorStop(1, color);
@@ -75,9 +78,56 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
         ctx.fill();
 
         ctx.fillStyle = '#222';
-        ctx.fillRect(6, -3, 14, 6);
+        ctx.fillRect(6, -3, 14, 6); // Barrel base
         ctx.fillStyle = color;
-        ctx.fillRect(0, -4, 6, 8);
+        ctx.fillRect(0, -4, 6, 8); // Body plate
+    } else if (type.includes('sniper') || type.includes('barrett')) {
+        ctx.fillStyle = color;
+        ctx.fillRect(-8, -4, 16, 8);
+        ctx.fillStyle = '#222';
+        ctx.fillRect(8, -2, 20, 4); // Long barrel
+    } else if (type.includes('blaster') || type.includes('laser') || type.includes('plasma')) {
+        const gradBody = ctx.createRadialGradient(-3, -3, 2, 0, 0, 12);
+        gradBody.addColorStop(0, lightenColor(color, 40));
+        gradBody.addColorStop(1, color);
+        ctx.fillStyle = gradBody;
+        ctx.beginPath();
+        ctx.arc(0, 0, 10, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.fillStyle = '#222';
+        ctx.beginPath();
+        ctx.moveTo(8, -4);
+        ctx.lineTo(18, -2);
+        ctx.lineTo(18, 2);
+        ctx.lineTo(8, 4);
+        ctx.closePath();
+        ctx.fill();
+    } else if (type.includes('bomber') || type.includes('mortar') || type.includes('artillery') || type.includes('rocket')) {
+        ctx.fillStyle = color;
+        ctx.fillRect(-10, -6, 20, 12);
+        ctx.fillStyle = lightenColor(color, -20);
+        ctx.fillRect(-8, -8, 16, 16);
+        ctx.fillStyle = '#222';
+        ctx.fillRect(4, -4, 18, 8);
+        ctx.beginPath();
+        ctx.arc(22, 0, 4, 0, Math.PI * 2);
+        ctx.fill();
+    } else if (type.includes('abrams') || type.includes('challenger') || type.includes('leopard') || type.includes('type')) {
+         // Tank-like chassis
+        ctx.fillStyle = color;
+        ctx.fillRect(-12, -10, 24, 20); // Hull
+        // Turret
+        const gradTurret = ctx.createRadialGradient(-2, -2, 1, 0, 0, 8);
+        gradTurret.addColorStop(0, lightenColor(color, 30));
+        gradTurret.addColorStop(1, color);
+        ctx.fillStyle = gradTurret;
+        ctx.beginPath();
+        ctx.arc(0, 0, 8, 0, Math.PI * 2);
+        ctx.fill();
+        // Barrel
+        ctx.fillStyle = '#333';
+        ctx.fillRect(6, -2.5, 20, 5);
     } else if (type.includes('ciws') || type.includes('phalanx')) {
         const gradDome = ctx.createRadialGradient(-2, -8, 2, 0, -4, 10);
         gradDome.addColorStop(0, '#fff');
@@ -97,7 +147,17 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
         
         ctx.fillStyle = '#37474F';
         ctx.fillRect(7, -3, 16, 8);
-    } else {
+    } else if (type.includes('patriot') || type.includes('s-400') || type.includes('iron dome') || type.includes('javelin')) {
+        // Missile launcher style
+        ctx.fillStyle = lightenColor(color, -20);
+        ctx.fillRect(-10, -12, 20, 24); // Base box
+        ctx.fillStyle = color;
+        ctx.fillRect(4, -10, 18, 8); // Top tube
+        ctx.fillRect(4, 2, 18, 8);  // Bottom tube
+        ctx.fillStyle = 'red';
+        ctx.beginPath(); ctx.arc(22, -6, 2, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(22, 6, 2, 0, Math.PI*2); ctx.fill();
+    } else { // Default fallback
         const gradBody = ctx.createRadialGradient(-3, -3, 2, 0, 0, 12);
         gradBody.addColorStop(0, lightenColor(color, 40));
         gradBody.addColorStop(1, color);
@@ -114,6 +174,7 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
 
     ctx.restore();
 
+    // Highlight
     ctx.fillStyle = 'rgba(255,255,255,0.4)';
     ctx.beginPath();
     ctx.arc(x - 5, y - 5, 5, 0, Math.PI * 2);
