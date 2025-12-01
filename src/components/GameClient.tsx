@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import type { GameState, PlacedTower, TowerData, ActiveEnemy, Soldier } from "@/lib/types";
 import { GAME_CONFIG, LEVELS, TOWERS, ENEMIES_BY_WAVE, ENEMIES } from "@/lib/game-config";
 import GameBoard from "./GameBoard";
 import GameSidebar from "./GameSidebar";
-import GameControls from "./GameControls";
 import { useGameLoop } from "@/hooks/useGameLoop";
 import { useToast } from "@/hooks/use-toast";
 
@@ -28,6 +27,7 @@ export default function GameClient() {
   const [gameState, setGameState] = useState<GameState>(initialGameState);
   const [draggingTower, setDraggingTower] = useState<TowerData | null>(null);
   const { toast } = useToast();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleStartWave = useCallback(() => {
     if (gameState.waveActive) return;
@@ -62,40 +62,9 @@ export default function GameClient() {
           waveTimer: 0,
       };
     });
-  }, [gameState.waveActive]);
+  }, [gameState.waveActive, gameState.currentLevel]);
 
   useGameLoop(gameState, setGameState, handleStartWave);
-
-  const handlePause = () => {
-    setGameState((prev) => ({
-      ...prev,
-      status: prev.status === "paused" ? "playing" : "paused",
-    }));
-  };
-
-  const handleSave = () => {
-    try {
-      localStorage.setItem("td_save_realistic", JSON.stringify(gameState));
-      toast({ title: "Game Saved", description: "Your progress has been saved." });
-    } catch (error) {
-      toast({ variant: "destructive", title: "Save Failed", description: "Could not save game data." });
-    }
-  };
-
-  const handleLoad = () => {
-    try {
-      const savedState = localStorage.getItem("td_save_realistic");
-      if (savedState) {
-        const parsedState = JSON.parse(savedState);
-        setGameState({...parsedState, status: 'paused'}); // Load in paused state
-        toast({ title: "Game Loaded", description: "Your progress has been restored." });
-      } else {
-        toast({ variant: "destructive", title: "Load Failed", description: "No saved game found." });
-      }
-    } catch (error) {
-      toast({ variant: "destructive", title: "Load Failed", description: "Could not load saved data." });
-    }
-  };
 
   const handleDragStart = (tower: TowerData) => {
     if (gameState.money >= tower.cost) {
@@ -136,19 +105,47 @@ export default function GameClient() {
     setDraggingTower(null);
   };
   
+  const handleDragOver = (e: React.DragEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "copy";
+    if(canvasRef.current) canvasRef.current.classList.add("drag-over");
+  };
+
+  const handleDragLeave = () => {
+    if(canvasRef.current) canvasRef.current.classList.remove("drag-over");
+  };
+
+  const handleDropEvent = (e: React.DragEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
+    if(canvasRef.current) canvasRef.current.classList.remove("drag-over");
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const gridX = Math.floor(x / GAME_CONFIG.CELL_WIDTH);
+    const gridY = Math.floor(y / GAME_CONFIG.CELL_HEIGHT);
+    
+    if (gridX < 0 || gridX >= GAME_CONFIG.GRID_COLS || gridY < 0 || gridY >= GAME_CONFIG.GRID_ROWS) {
+        return;
+    }
+
+    handleDrop(gridX, gridY);
+  };
+
   return (
-    <div className="flex w-full max-w-[1600px] mx-auto p-4 gap-4 h-[calc(100vh-2rem)]">
-      <div className="flex-grow flex flex-col gap-4">
-        <GameControls
-          onPause={handlePause}
-          onSave={handleSave}
-          onLoad={handleLoad}
-          onStartWave={handleStartWave}
-          gameState={gameState}
-        />
-        <GameBoard gameState={gameState} onDrop={handleDrop} />
-      </div>
-      <GameSidebar gameState={gameState} onDragStart={handleDragStart} />
+    <div id="game-container">
+      <GameBoard
+        canvasRef={canvasRef}
+        gameState={gameState}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDropEvent}
+      />
+      <GameSidebar gameState={gameState} onDragStart={handleDragStart} onStartWave={handleStartWave} />
     </div>
   );
 }

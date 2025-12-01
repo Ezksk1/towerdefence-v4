@@ -8,7 +8,6 @@ interface GameControlsProps {
   onPause: () => void;
   onSave: () => void;
   onLoad: () => void;
-  onStartWave: () => void;
   gameState: GameState;
 }
 
@@ -16,13 +15,11 @@ export default function GameControls({
   onPause,
   onSave,
   onLoad,
-  onStartWave,
   gameState,
 }: GameControlsProps) {
-  const isWaveInProgress = gameState.waveActive;
 
   return (
-    <div className="flex gap-2 bg-card p-2 rounded-lg border">
+    <div className="flex gap-2 p-2 rounded-lg" style={{backgroundColor: '#2a2a2a', border: '2px solid #444'}}>
       <Button onClick={onPause} variant="accent" size="sm">
         {gameState.status === "paused" ? <Play /> : <Pause />}
         {gameState.status === "paused" ? "Resume" : "Pause"}
@@ -36,15 +33,6 @@ export default function GameControls({
         Load
       </Button>
       <div className="flex-grow" />
-      <Button
-        onClick={onStartWave}
-        disabled={isWaveInProgress}
-        size="sm"
-        className="font-bold"
-      >
-        {isWaveInProgress ? <Loader2 className="animate-spin" /> : <Waves />}
-        {isWaveInProgress ? `Wave ${gameState.wave} in Progress` : "Start Wave"}
-      </Button>
     </div>
   );
 }

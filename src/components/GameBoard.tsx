@@ -7,7 +7,10 @@ import { useToast } from "@/hooks/use-toast";
 
 interface GameBoardProps {
   gameState: GameState;
-  onDrop: (gridX: number, gridY: number) => void;
+  onDragOver: (e: React.DragEvent<HTMLCanvasElement>) => void;
+  onDragLeave: (e: React.DragEvent<HTMLCanvasElement>) => void;
+  onDrop: (e: React.DragEvent<HTMLCanvasElement>) => void;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
 // Helper to lighten color
@@ -18,7 +21,7 @@ function lightenColor(color:string, percent:number) {
         let R = (num >> 16) + amt;
         let G = ((num >> 8) & 0x00FF) + amt;
         let B = (num & 0x0000FF) + amt;
-        return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
+        return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
     }
     return color;
 }
@@ -197,8 +200,7 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
 }
 
 
-export default function GameBoard({ gameState, onDrop }: GameBoardProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, canvasRef }: GameBoardProps) {
 
   const drawBackground = useCallback((ctx: CanvasRenderingContext2D) => {
     const skyGradient = ctx.createLinearGradient(0, 0, 0, GAME_CONFIG.GRID_HEIGHT);
@@ -299,41 +301,16 @@ export default function GameBoard({ gameState, onDrop }: GameBoardProps) {
     if (gameState.status === 'paused') {
       drawPausedOverlay(ctx);
     }
-  }, [gameState, drawBackground, drawPath, drawTowers, drawEnemies, drawProjectiles, drawPausedOverlay]);
-
-  const handleDragOver = (e: React.DragEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDropEvent = (e: React.DragEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const gridX = Math.floor(x / GAME_CONFIG.CELL_WIDTH);
-    const gridY = Math.floor(y / GAME_CONFIG.CELL_HEIGHT);
-    
-    if (gridX < 0 || gridX >= GAME_CONFIG.GRID_COLS || gridY < 0 || gridY >= GAME_CONFIG.GRID_ROWS) {
-        return;
-    }
-
-    onDrop(gridX, gridY);
-  };
+  }, [gameState, drawBackground, drawPath, drawTowers, drawEnemies, drawProjectiles, drawPausedOverlay, canvasRef]);
   
   return (
-    <div className="w-full h-full flex items-center justify-center bg-card rounded-lg border">
       <canvas
         ref={canvasRef}
         width={GAME_CONFIG.GRID_WIDTH}
         height={GAME_CONFIG.GRID_HEIGHT}
-        className="rounded-lg"
-        onDragOver={handleDragOver}
-        onDrop={handleDropEvent}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
       />
-    </div>
   );
 }
