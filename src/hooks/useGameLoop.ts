@@ -146,26 +146,52 @@ export function useGameLoop(
             });
             
             // 3. Update projectiles and apply damage
-            const survivingEnemies = updatedEnemies.map(enemy => {
-                let newEnemy = {...enemy};
-                newProjectiles.forEach(p => {
-                    if(!p.active) return;
-                    const pTarget = p.target as ActiveEnemy;
-                    if (pTarget.idInGame === newEnemy.idInGame) {
-                        const dx = pTarget.x - p.x;
-                        const dy = pTarget.y - p.y;
-                        const dist = Math.hypot(dx, dy);
+            const remainingProjectiles = [...newProjectiles];
+            let enemiesAfterHits = [...updatedEnemies];
 
-                        if (dist < p.speed) {
-                            newEnemy.currentHp -= p.damage;
-                            p.active = false;
-                        }
+            remainingProjectiles.forEach(p => {
+                if (!p.active) return;
+                
+                const pTarget = p.target as ActiveEnemy;
+                if (!pTarget.active || pTarget.currentHp <= 0) {
+                    p.active = false;
+                    return;
+                }
+
+                const dx = pTarget.x - p.x;
+                const dy = pTarget.y - p.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist < p.speed) {
+                    p.active = false; // Deactivate projectile on hit
+
+                    // Apply damage
+                    if (p.splash > 0) {
+                        // Splash damage
+                        enemiesAfterHits = enemiesAfterHits.map(enemy => {
+                            if (Math.hypot(enemy.x - pTarget.x, enemy.y - pTarget.y) <= p.splash) {
+                                enemy.currentHp -= p.damage;
+                            }
+                            return enemy;
+                        });
+                    } else {
+                        // Single target damage
+                        enemiesAfterHits = enemiesAfterHits.map(enemy => {
+                            if (enemy.idInGame === pTarget.idInGame) {
+                                enemy.currentHp -= p.damage;
+                            }
+                            return enemy;
+                        });
                     }
-                });
-                return newEnemy;
+                } else {
+                    // Move projectile
+                    p.x += (dx / dist) * p.speed;
+                    p.y += (dy / dist) * p.speed;
+                }
             });
 
-            const finalEnemies = survivingEnemies.filter(enemy => {
+
+            const finalEnemies = enemiesAfterHits.filter(enemy => {
                 if (enemy.currentHp <= 0) {
                     newMoney += Math.floor(enemy.totalHp / 10);
                     return false;
@@ -176,7 +202,7 @@ export function useGameLoop(
             // 4. Wave Management
             let newWave = prev.wave;
             let newWaveActive = prev.waveActive;
-            if (prev.waveActive && finalEnemies.length === 0) {
+            if (prev.waveActive && finalEnemies.length === 0 && updatedEnemies.length > 0) {
                 newWaveActive = false;
                 newWave++;
                 newMoney += 100; // End of wave bonus
@@ -191,7 +217,7 @@ export function useGameLoop(
                 waveActive: newWaveActive,
                 enemies: finalEnemies,
                 towers: updatedTowers,
-                projectiles: newProjectiles.filter(p => p.active),
+                projectiles: remainingProjectiles.filter(p => p.active),
                 soldiers: newSoldiers,
                 waveTimer: prev.waveActive ? 0 : prev.waveTimer,
             };
