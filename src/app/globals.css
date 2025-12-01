@@ -67,6 +67,19 @@
   }
 }
 
+@keyframes fast-forward-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+.fast-forward-active {
+  animation: fast-forward-pulse 1s infinite;
+}
+
+
 body {
     margin: 0;
     padding: 0;

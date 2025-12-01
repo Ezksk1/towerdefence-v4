@@ -378,17 +378,12 @@ export default function GameClient() {
 
   const handleSpeedUp = () => {
     let newSpeed;
-    setGameState(prev => {
-      if (prev.gameSpeed === 1) newSpeed = 2;
-      else if (prev.gameSpeed === 2) newSpeed = 4;
-      else newSpeed = 1;
-      
-      return {...prev, gameSpeed: newSpeed};
-    });
-    // This needs to be outside the setter to avoid the re-render error
     if (gameState.gameSpeed === 1) newSpeed = 2;
     else if (gameState.gameSpeed === 2) newSpeed = 4;
+    else if (gameState.gameSpeed === 4) newSpeed = 8;
     else newSpeed = 1;
+    
+    setGameState(prev => ({...prev, gameSpeed: newSpeed}));
     toast({ title: `Game speed set to ${newSpeed}x` });
   };
 

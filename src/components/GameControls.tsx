@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 interface GameControlsProps {
   onPause: () => void;
@@ -45,7 +46,7 @@ export default function GameControls({
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={onSpeedUp} variant="outline" size="icon" className="relative">
+            <Button onClick={onSpeedUp} variant="outline" size="icon" className={cn("relative", gameState.gameSpeed > 1 && "fast-forward-active text-accent")}>
                 <ChevronsRight />
                 <span className="absolute bottom-1 right-1 text-xs font-bold">{gameState.gameSpeed}x</span>
             </Button>
