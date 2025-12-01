@@ -93,7 +93,7 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
       )}
       
       <div id="tower-list">
-        {Object.values(TOWERS).filter(tower => tower && tower.id).map((tower) => {
+        {Object.values(TOWERS).map((tower) => {
           if (!tower || !tower.id) return null;
           const canAfford = gameState.money >= tower.cost;
           return (
@@ -106,7 +106,7 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
               title={`${tower.name} - $${tower.cost}`}
               data-type={tower.id}
             >
-              <div className={cn("icon", `${tower.id.replace(/_/g, '-')}-icon`)}>
+              <div className="icon">
                  <Image src={tower.iconUrl} alt={tower.name} width={32} height={32} data-ai-hint={tower.iconHint} />
               </div>
               <div className="info">
