@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import type { GameState, PlacedTower, TowerData } from "@/lib/types";
+import { useState, useCallback, useEffect } from "react";
+import type { GameState, PlacedTower, TowerData, ActiveEnemy, Soldier } from "@/lib/types";
 import { GAME_CONFIG, LEVELS, TOWERS, ENEMIES_BY_WAVE, ENEMIES } from "@/lib/game-config";
 import GameBoard from "./GameBoard";
 import GameSidebar from "./GameSidebar";
@@ -14,12 +14,14 @@ const initialGameState: GameState = {
   lives: GAME_CONFIG.STARTING_LIVES,
   money: GAME_CONFIG.STARTING_MONEY,
   wave: 1,
-  currentLevel: 1,
+  currentLevel: 2, // Use the new complex path
   waveTimer: GAME_CONFIG.WAVE_TIMER_DURATION,
   towers: [],
   enemies: [],
   projectiles: [],
-  decorations: [], // This will be populated in a useEffect
+  decorations: [],
+  soldiers: [],
+  waveActive: false,
 };
 
 export default function GameClient() {
@@ -27,37 +29,40 @@ export default function GameClient() {
   const [draggingTower, setDraggingTower] = useState<TowerData | null>(null);
   const { toast } = useToast();
 
-  const isCellOccupied = useCallback((gridX: number, gridY: number, towers: PlacedTower[]) => {
-    return towers.some(t => t.gridX === gridX && t.gridY === gridY);
-  }, []);
-
   const handleStartWave = useCallback(() => {
-    if (gameState.status !== "playing") return;
+    if (gameState.waveActive) return;
 
     setGameState(prev => {
-      const waveEnemies = (ENEMIES_BY_WAVE[prev.wave] || []).map((enemyId, index) => {
-          const enemyData = ENEMIES[enemyId];
-          const path = LEVELS[prev.currentLevel - 1].path;
-          const totalHp = enemyData.hp(prev.wave);
-          return {
-              ...enemyData,
-              idInGame: `${prev.wave}-${index}`,
-              x: path[0].x - (index * 40), // Stagger spawn
-              y: path[0].y,
-              currentHp: totalHp,
-              totalHp: totalHp,
-              pathIndex: 0,
-          };
+      if (prev.lives <= 0) return prev;
+
+      const enemiesToSpawn = (ENEMIES_BY_WAVE[prev.wave] || []).map((enemyId, index) => {
+        const enemyData = ENEMIES[enemyId];
+        const path = LEVELS[prev.currentLevel - 1].path;
+        const totalHp = enemyData.hp(prev.wave);
+        return {
+            ...enemyData,
+            idInGame: `${prev.wave}-${index}`,
+            x: path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2,
+            y: path[0].y * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT/2,
+            currentHp: totalHp,
+            totalHp: totalHp,
+            pathIndex: 0,
+            active: true,
+            speedFactor: 1,
+            frozenTimer: 0,
+            poisonTimer: 0,
+            poisonDamage: 0,
+        } as ActiveEnemy;
       });
 
       return {
           ...prev,
-          status: "playing",
-          enemies: waveEnemies,
+          waveActive: true,
+          enemies: enemiesToSpawn,
           waveTimer: 0,
       };
     });
-  }, [gameState.status]);
+  }, [gameState.waveActive]);
 
   useGameLoop(gameState, setGameState, handleStartWave);
 
@@ -103,8 +108,9 @@ export default function GameClient() {
     
     const path = LEVELS[gameState.currentLevel - 1].path;
     const isOnPath = path.some(p => p.x === gridX && p.y === gridY);
+    const isOccupied = gameState.towers.some(t => t.gridX === gridX && t.gridY === gridY);
     
-    if (isOnPath || isCellOccupied(gridX, gridY, gameState.towers)) {
+    if (isOnPath || isOccupied) {
        toast({ variant: "destructive", title: "Placement Error", description: "Cannot place tower here." });
        setDraggingTower(null);
        return;
@@ -116,31 +122,20 @@ export default function GameClient() {
       towers: [
         ...prev.towers,
         {
-          ...TOWERS[draggingTower.id],
+          ...(TOWERS[draggingTower.id] as TowerData),
           idInGame: crypto.randomUUID(),
           x: gridX * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH / 2,
           y: gridY * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT / 2,
           gridX,
           gridY,
           cooldown: 0,
+          angle: 0,
         },
       ],
     }));
     setDraggingTower(null);
   };
   
-  const handleNextLevel = () => {
-    setGameState(prev => {
-        const nextLevel = prev.currentLevel + 1 > LEVELS.length ? prev.currentLevel : prev.currentLevel + 1;
-        return {
-            ...initialGameState,
-            wave: prev.wave,
-            currentLevel: nextLevel,
-            money: prev.money + 500, // Level completion bonus
-        }
-    });
-  }
-
   return (
     <div className="flex w-full max-w-[1600px] mx-auto p-4 gap-4 h-[calc(100vh-2rem)]">
       <div className="flex-grow flex flex-col gap-4">

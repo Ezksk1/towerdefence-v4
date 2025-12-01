@@ -36,7 +36,7 @@ export default function GameSidebar({ gameState, onDragStart }: GameSidebarProps
             <div className="flex items-center gap-2">
                 <Waves className="text-blue-400"/> <span className="font-bold">Wave {gameState.wave}</span>
             </div>
-            {gameState.waveTimer > 0 && gameState.enemies.length === 0 && (
+            {!gameState.waveActive && gameState.waveTimer > 0 && (
                 <div className="flex items-center gap-2">
                     <Timer className="text-accent"/> <span className="font-bold">{gameState.waveTimer}s</span>
                 </div>

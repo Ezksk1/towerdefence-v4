@@ -19,7 +19,7 @@ export default function GameControls({
   onStartWave,
   gameState,
 }: GameControlsProps) {
-  const isWaveInProgress = gameState.enemies.length > 0;
+  const isWaveInProgress = gameState.waveActive;
 
   return (
     <div className="flex gap-2 bg-card p-2 rounded-lg border">
@@ -43,7 +43,7 @@ export default function GameControls({
         className="font-bold"
       >
         {isWaveInProgress ? <Loader2 className="animate-spin" /> : <Waves />}
-        {isWaveInProgress ? "Wave in Progress" : "Start Wave"}
+        {isWaveInProgress ? `Wave ${gameState.wave} in Progress` : "Start Wave"}
       </Button>
     </div>
   );

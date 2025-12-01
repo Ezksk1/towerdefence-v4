@@ -5,7 +5,20 @@ export type TowerId =
   | 'apache' | 'f35' | 'f22' | 'ac130'
   | 'ciws' | 'javelin' | 'm109_paladin' | 'himars'
   | 'patriot' | 'missile_silo' | 'a10_warthog'
-  | 'barracks';
+  | 'barracks'
+  | 'sniper' | 'ballista' | 'ice' | 'poison' | 'laser' | 'tesla' | 'rocket'
+  | 'flame' | 'storm' | 'earth' | 'wind'
+  | 'buff' | 'heal' | 'slow'
+  | 'minigun' | 'railgun' | 'mortar' | 'gatling'
+  | 'plasma' | 'quantum' | 'gravity' | 'void'
+  | 'mine' | 'wall' | 'spike'
+  | 'nuke' | 'omega' | 'titan'
+  | 'mirror' | 'vampire' | 'swarm' | 'orbital'
+  | 'timewarp' | 'necromancer' | 'blackhole'
+  | 's400' | 'challenger2' | 'caesar' | 'leopard2' | 'irondome' | 'type99' | 'type10'
+  | 'eagle_usa' | 'panda_china' | 'bear_russia' | 'tiger_india' | 'kangaroo_aus' | 'beaver_canada' | 'lion_uk' | 'dragon_wales'
+  | 'commando';
+
 
 export interface TowerData {
   id: TowerId;
@@ -18,6 +31,36 @@ export interface TowerData {
   effect?: string;
   iconUrl: string;
   iconHint: string;
+  type?: string;
+  pierce?: number;
+  slow?: number;
+  poison?: number;
+  laser?: boolean;
+  chain?: number;
+  burn?: number;
+  stun?: number;
+  knockback?: number;
+  buffRange?: number;
+  buffDamage?: number;
+  healAmount?: number;
+  slowArea?: number;
+  slowFactor?: number;
+  melt?: number;
+  teleport?: boolean;
+  pull?: number;
+  drain?: number;
+  mines?: boolean;
+  barrier?: boolean;
+  melee?: boolean;
+  radiation?: number;
+  reflect?: boolean;
+  lifesteal?: number;
+  multishot?: number;
+  satellite?: boolean;
+  duration?: number;
+  pullForce?: number;
+  crit?: number;
+  speed?: number;
 }
 
 export interface PlacedTower extends TowerData {
@@ -28,6 +71,7 @@ export interface PlacedTower extends TowerData {
   gridY: number;
   cooldown: number;
   target?: string; // enemy id
+  angle?: number;
 }
 
 export type EnemyId =
@@ -35,7 +79,7 @@ export type EnemyId =
   | 'humvee' | 'btr80' | 'bmp2' | 'apc'
   | 'tank' | 't72' | 't90' | 'heavy_tank'
   | 'mi24_hind' | 'su25_frogfoot' | 'jet'
-  | 'boss' | 'scud_launcher';
+  | 'boss' | 'scud_launcher' | 'reindeer';
 
 export interface EnemyData {
   id: EnemyId;
@@ -55,6 +99,12 @@ export interface ActiveEnemy extends EnemyData {
   currentHp: number;
   totalHp: number;
   pathIndex: number;
+  active: boolean;
+  speedFactor: number;
+  frozenTimer: number;
+  poisonTimer: number;
+  poisonDamage: number;
+  blocked?: boolean;
 }
 
 export type LevelData = {
@@ -64,10 +114,10 @@ export type LevelData = {
 };
 
 export interface Decoration {
-    type: 'tree' | 'cane' | 'ornament';
+    type: 'tree' | 'cane' | 'ornament' | 'reindeer';
     x: number;
     y: number;
-    size: number;
+    size?: number;
     color?: string;
     rotation?: number;
 }
@@ -76,14 +126,29 @@ export interface Projectile {
     id: string;
     x: number;
     y: number;
-    targetX: number;
-    targetY: number;
+    target: ActiveEnemy | {x: number, y: number};
     speed: number;
     damage: number;
     splash: number;
+    active: boolean;
+    config: Partial<TowerData>;
+    type?: string;
 }
 
 export type GameStatus = 'playing' | 'paused' | 'game-over' | 'level-complete';
+
+export type Soldier = {
+  x: number;
+  y: number;
+  parent: PlacedTower;
+  hp: number;
+  maxHp: number;
+  damage: number;
+  range: number;
+  cooldown: number;
+  takeDamage: (amount: number) => void;
+  update: () => void;
+}
 
 export type GameState = {
   status: GameStatus;
@@ -96,4 +161,6 @@ export type GameState = {
   enemies: ActiveEnemy[];
   projectiles: Projectile[];
   decorations: Decoration[];
+  soldiers: Soldier[];
+  waveActive: boolean;
 };

@@ -20,86 +20,158 @@ export const GAME_CONFIG = {
   CELL_HEIGHT: 40,
   STARTING_LIVES: 20,
   STARTING_MONEY: 250,
-  WAVE_TIMER_DURATION: 30,
+  WAVE_TIMER_DURATION: 10,
 };
 
-export const TOWERS: Record<TowerId, TowerData> = {
-  // Budget
-  turret: { id: 'turret', name: 'Turret', cost: 50, range: 120, damage: 10, rate: 40, ...getTowerIcon('turret_icon') },
-  rapid_fire: { id: 'rapid_fire', name: 'Rapid Fire', cost: 75, range: 100, damage: 3, rate: 8, ...getTowerIcon('rapid_fire_icon') },
-  blaster: { id: 'blaster', name: 'Blaster', cost: 150, range: 90, damage: 5, rate: 10, ...getTowerIcon('blaster_icon') },
-  bomber: { id: 'bomber', name: 'Bomber', cost: 200, range: 140, damage: 20, rate: 60, splash: 50, ...getTowerIcon('bomber_icon') },
-  // Infantry
-  m4_trooper: { id: 'm4_trooper', name: 'M4 Trooper', cost: 100, range: 120, damage: 15, rate: 30, ...getTowerIcon('m4_trooper_icon') },
-  m2_browning: { id: 'm2_browning', name: 'M2 Browning', cost: 250, range: 180, damage: 25, rate: 10, ...getTowerIcon('m2_browning_icon') },
-  barrett_50: { id: 'barrett_50', name: 'Barrett .50', cost: 350, range: 400, damage: 150, rate: 120, ...getTowerIcon('barrett_50_icon') },
-  // Armored
-  m1_abrams: { id: 'm1_abrams', name: 'M1 Abrams', cost: 600, range: 250, damage: 80, rate: 80, splash: 60, ...getTowerIcon('m1_abrams_icon') },
-  bradley_ifv: { id: 'bradley_ifv', name: 'Bradley IFV', cost: 900, range: 220, damage: 40, rate: 15, ...getTowerIcon('bradley_ifv_icon') },
-  stryker: { id: 'stryker', name: 'Stryker', cost: 700, range: 200, damage: 25, rate: 10, ...getTowerIcon('stryker_icon') },
-  // Air Support
-  apache: { id: 'apache', name: 'Apache', cost: 800, range: 300, damage: 40, rate: 15, splash: 30, ...getTowerIcon('apache_icon') },
-  f35: { id: 'f35', name: 'F-35', cost: 3000, range: 500, damage: 1000, rate: 300, ...getTowerIcon('f35_icon') },
-  f22: { id: 'f22', name: 'F-22 Raptor', cost: 4000, range: 500, damage: 1500, rate: 180, ...getTowerIcon('f22_icon') },
-  ac130: { id: 'ac130', name: 'AC-130', cost: 5000, range: 400, damage: 50, rate: 5, ...getTowerIcon('ac130_icon') },
-  // Specialized
-  ciws: { id: 'ciws', name: 'CIWS Phalanx', cost: 1500, range: 220, damage: 8, rate: 1, ...getTowerIcon('ciws_icon') },
-  javelin: { id: 'javelin', name: 'Javelin Team', cost: 500, range: 300, damage: 200, rate: 120, ...getTowerIcon('javelin_icon') },
-  m109_paladin: { id: 'm109_paladin', name: 'M109 Paladin', cost: 1500, range: 600, damage: 400, rate: 240, splash: 80, ...getTowerIcon('m109_paladin_icon') },
-  himars: { id: 'himars', name: 'HIMARS', cost: 1800, range: 400, damage: 300, rate: 180, splash: 100, ...getTowerIcon('himars_icon') },
-  patriot: { id: 'patriot', name: 'Patriot System', cost: 1200, range: 500, damage: 300, rate: 200, splash: 100, ...getTowerIcon('patriot_icon') },
-  missile_silo: { id: 'missile_silo', name: 'Missile Silo', cost: 2000, range: 800, damage: 1000, rate: 400, splash: 150, ...getTowerIcon('missile_silo_icon') },
-  a10_warthog: { id: 'a10_warthog', name: 'A-10 Strike', cost: 2500, range: 1000, damage: 500, rate: 600, ...getTowerIcon('a10_warthog_icon') },
-  // Support
-  barracks: { id: 'barracks', name: 'Barracks', cost: 500, range: 100, damage: 0, rate: 600, effect: 'spawn', ...getTowerIcon('barracks_icon') },
+export const TOWERS: Record<string, TowerData> = {
+    // Basic Towers
+    turret: { id: 'turret', name: 'Turret', cost: 50, range: 120, damage: 10, rate: 40, ...getTowerIcon('turret_icon') },
+    sniper: { id: 'sniper', name: 'Sniper', cost: 100, range: 250, damage: 40, rate: 100, ...getTowerIcon('sniper_icon') },
+    blaster: { id: 'blaster', name: 'Blaster', cost: 150, range: 90, damage: 5, rate: 10, ...getTowerIcon('blaster_icon') },
+    bomber: { id: 'bomber', name: 'Bomber', cost: 200, range: 140, damage: 20, rate: 80, splash: 50, ...getTowerIcon('bomber_icon') },
+    rapid_fire: { id: 'rapid_fire', name: 'Rapid', cost: 75, range: 100, damage: 3, rate: 8, ...getTowerIcon('rapid_fire_icon') },
+
+    // NEW: US Military Towers
+    m4_trooper: { id: 'm4_trooper', name: 'M4 Trooper', cost: 100, range: 120, damage: 15, rate: 30, ...getTowerIcon('m4_trooper_icon') },
+    barrett_50: { id: 'barrett_50', name: 'Barrett .50', cost: 350, range: 400, damage: 150, rate: 120, ...getTowerIcon('barrett_50_icon') },
+    m2_browning: { id: 'm2_browning', name: 'M2 Browning', cost: 250, range: 180, damage: 25, rate: 10, ...getTowerIcon('m2_browning_icon') },
+    m1_abrams: { id: 'm1_abrams', name: 'M1 Abrams', cost: 600, range: 250, damage: 80, rate: 80, splash: 60, ...getTowerIcon('m1_abrams_icon') },
+    apache: { id: 'apache', name: 'Apache', cost: 800, range: 300, damage: 40, rate: 15, splash: 30, ...getTowerIcon('apache_icon') },
+    patriot: { id: 'patriot', name: 'Patriot', cost: 1200, range: 500, damage: 300, rate: 200, splash: 100, ...getTowerIcon('patriot_icon') },
+    ciws: { id: 'ciws', name: 'CIWS Phalanx', cost: 1500, range: 220, damage: 8, rate: 1, ...getTowerIcon('ciws_icon') }, // Rate 1 = Insane fire rate
+    javelin: { id: 'javelin', name: 'Javelin Team', cost: 400, range: 300, damage: 120, rate: 150, type: 'javelin', ...getTowerIcon('javelin_icon') },
+    ac130: { id: 'ac130', name: 'AC-130', cost: 3000, range: 600, damage: 50, rate: 10, type: 'ac130', ...getTowerIcon('ac130_icon') },
+    commando: { id: 'commando', name: 'Commando', cost: 600, range: 150, damage: 30, rate: 20, type: 'commando', ...getTowerIcon('commando_icon') },
+
+    // NEW: International Military
+    s400: { id: 's400', name: 'S-400 Triumf', cost: 1800, range: 550, damage: 350, rate: 180, splash: 120, ...getTowerIcon('s400_icon') },
+    challenger2: { id: 'challenger2', name: 'Challenger 2', cost: 700, range: 280, damage: 90, rate: 90, splash: 65, ...getTowerIcon('challenger2_icon') },
+    caesar: { id: 'caesar', name: 'CAESAR Artillery', cost: 900, range: 400, damage: 120, rate: 110, splash: 85, ...getTowerIcon('caesar_icon') },
+    leopard2: { id: 'leopard2', name: 'Leopard 2', cost: 750, range: 270, damage: 95, rate: 85, splash: 70, ...getTowerIcon('leopard2_icon') },
+    irondome: { id: 'irondome', name: 'Iron Dome', cost: 2000, range: 500, damage: 280, rate: 120, type: 'irondome', ...getTowerIcon('irondome_icon') },
+    type99: { id: 'type99', name: 'Type 99', cost: 650, range: 260, damage: 85, rate: 80, splash: 60, ...getTowerIcon('type99_icon') },
+    type10: { id: 'type10', name: 'Type 10', cost: 800, range: 290, damage: 100, rate: 75, splash: 75, ...getTowerIcon('type10_icon') },
+
+    // NEW: National Animal Turrets
+    eagle_usa: { id: 'eagle_usa', name: 'Bald Eagle', cost: 500, range: 280, damage: 40, rate: 35, type: 'eagle', speed: 1.5, ...getTowerIcon('eagle_usa_icon') },
+    panda_china: { id: 'panda_china', name: 'Giant Panda', cost: 450, range: 140, damage: 60, rate: 100, type: 'panda', stun: 40, ...getTowerIcon('panda_china_icon') },
+    bear_russia: { id: 'bear_russia', name: 'Brown Bear', cost: 700, range: 120, damage: 100, rate: 120, type: 'bear', knockback: 30, ...getTowerIcon('bear_russia_icon') },
+    tiger_india: { id: 'tiger_india', name: 'Bengal Tiger', cost: 800, range: 150, damage: 110, rate: 60, type: 'tiger', crit: 2.0, ...getTowerIcon('tiger_india_icon') },
+    kangaroo_aus: { id: 'kangaroo_aus', name: 'Kangaroo', cost: 400, range: 180, damage: 35, rate: 25, type: 'kangaroo', multishot: 2, ...getTowerIcon('kangaroo_aus_icon') },
+    beaver_canada: { id: 'beaver_canada', name: 'Beaver', cost: 350, range: 130, damage: 25, rate: 80, type: 'beaver', slow: 0.6, ...getTowerIcon('beaver_canada_icon') },
+    lion_uk: { id: 'lion_uk', name: 'Lion', cost: 900, range: 160, damage: 120, rate: 90, type: 'lion', splash: 40, ...getTowerIcon('lion_uk_icon') },
+    dragon_wales: { id: 'dragon_wales', name: 'Welsh Dragon', cost: 1200, range: 200, damage: 150, rate: 100, type: 'dragon', burn: 5, splash: 80, ...getTowerIcon('dragon_wales_icon') },
+
+    // NEW: Advanced Support
+    barracks: { id: 'barracks', name: 'Barracks', cost: 500, range: 100, rate: 600, type: 'barracks', ...getTowerIcon('barracks_icon') }, // Spawns troops
+    missile_silo: { id: 'missile_silo', name: 'Missile Silo', cost: 2000, range: 800, damage: 1000, rate: 400, splash: 150, ...getTowerIcon('missile_silo_icon') },
+    a10_warthog: { id: 'a10_warthog', name: 'A-10 Strike', cost: 2500, range: 1000, damage: 500, rate: 600, type: 'a10', ...getTowerIcon('a10_warthog_icon') },
+
+    // Legacy Towers (Optional, kept for compatibility or can be removed)
+    ballista: { id: 'ballista', name: 'Ballista', cost: 300, range: 280, damage: 120, rate: 100, pierce: 3, ...getTowerIcon('ballista_icon') },
+
+    // Status Effect Towers
+    ice: { id: 'ice', name: 'Ice', cost: 125, range: 130, damage: 5, rate: 60, slow: 0.5, ...getTowerIcon('ice_icon') },
+    poison: { id: 'poison', name: 'Poison', cost: 175, range: 110, damage: 2, rate: 50, poison: 3, ...getTowerIcon('poison_icon') },
+
+    // Advanced Towers
+    laser: { id: 'laser', name: 'Laser', cost: 250, range: 300, damage: 50, rate: 80, laser: true, ...getTowerIcon('laser_icon') },
+    tesla: { id: 'tesla', name: 'Tesla', cost: 300, range: 150, damage: 15, rate: 60, chain: 3, ...getTowerIcon('tesla_icon') },
+    rocket: { id: 'rocket', name: 'Rocket', cost: 400, range: 200, damage: 40, rate: 120, splash: 80, ...getTowerIcon('rocket_icon') },
+
+    // NEW: Elemental Towers
+    flame: { id: 'flame', name: 'Flame', cost: 180, range: 100, damage: 8, rate: 15, burn: 2, ...getTowerIcon('flame_icon') },
+    storm: { id: 'storm', name: 'Storm', cost: 220, range: 180, damage: 12, rate: 70, stun: 30, ...getTowerIcon('storm_icon') },
+    earth: { id: 'earth', name: 'Earth', cost: 160, range: 120, damage: 18, rate: 90, splash: 40, ...getTowerIcon('earth_icon') },
+    wind: { id: 'wind', name: 'Wind', cost: 140, range: 200, damage: 6, rate: 30, knockback: 20, ...getTowerIcon('wind_icon') },
+
+    // NEW: Support Towers
+    buff: { id: 'buff', name: 'Buffer', cost: 200, range: 150, damage: 0, rate: 120, buffRange: 100, buffDamage: 1.5, ...getTowerIcon('buff_icon') },
+    heal: { id: 'heal', name: 'Healer', cost: 250, range: 140, damage: 0, rate: 90, healAmount: 10, ...getTowerIcon('heal_icon') },
+    slow: { id: 'slow', name: 'Slower', cost: 130, range: 160, damage: 1, rate: 60, slowArea: 80, slowFactor: 0.3, ...getTowerIcon('slow_icon') },
+
+    // NEW: Special Mechanic Towers
+    minigun: { id: 'minigun', name: 'Minigun', cost: 190, range: 110, damage: 2, rate: 5, ...getTowerIcon('minigun_icon') },
+    railgun: { id: 'railgun', name: 'Railgun', cost: 350, range: 400, damage: 80, rate: 150, pierce: 3, ...getTowerIcon('railgun_icon') },
+    mortar: { id: 'mortar', name: 'Mortar', cost: 280, range: 250, damage: 35, rate: 100, splash: 90, ...getTowerIcon('mortar_icon') },
+    gatling: { id: 'gatling', name: 'Gatling', cost: 220, range: 130, damage: 4, rate: 6, ...getTowerIcon('gatling_icon') },
+
+    // NEW: Exotic Towers
+    plasma: { id: 'plasma', name: 'Plasma', cost: 320, range: 170, damage: 25, rate: 70, melt: 0.7, ...getTowerIcon('plasma_icon') },
+    quantum: { id: 'quantum', name: 'Quantum', cost: 450, range: 200, damage: 30, rate: 80, teleport: true, ...getTowerIcon('quantum_icon') },
+    gravity: { id: 'gravity', name: 'Gravity', cost: 380, range: 180, damage: 15, rate: 90, pull: 15, ...getTowerIcon('gravity_icon') },
+    void: { id: 'void', name: 'Void', cost: 500, range: 150, damage: 50, rate: 120, drain: 5, ...getTowerIcon('void_icon') },
+
+    // NEW: Area Control Towers
+    mine: { id: 'mine', name: 'Mine Layer', cost: 170, range: 100, damage: 40, rate: 200, mines: true, ...getTowerIcon('mine_icon') },
+    wall: { id: 'wall', name: 'Wall Gun', cost: 90, range: 80, damage: 12, rate: 50, barrier: true, ...getTowerIcon('wall_icon') },
+    spike: { id: 'spike', name: 'Spike Trap', cost: 110, range: 90, damage: 25, rate: 80, melee: true, ...getTowerIcon('spike_icon') },
+
+    // NEW: Ultimate Towers
+    nuke: { id: 'nuke', name: 'Nuke', cost: 600, range: 220, damage: 100, rate: 300, splash: 150, radiation: 5, ...getTowerIcon('nuke_icon') },
+    omega: { id: 'omega', name: 'Omega', cost: 800, range: 250, damage: 60, rate: 60, chain: 5, splash: 60, ...getTowerIcon('omega_icon') },
+    titan: { id: 'titan', name: 'Titan', cost: 700, range: 200, damage: 80, rate: 100, pierce: 5, splash: 70, ...getTowerIcon('titan_icon') },
+
+    // NEW: Unique Mechanic Towers
+    mirror: { id: 'mirror', name: 'Mirror', cost: 240, range: 160, damage: 20, rate: 70, reflect: true, ...getTowerIcon('mirror_icon') },
+    vampire: { id: 'vampire', name: 'Vampire', cost: 260, range: 140, damage: 18, rate: 80, lifesteal: 0.5, ...getTowerIcon('vampire_icon') },
+    swarm: { id: 'swarm', name: 'Swarm', cost: 210, range: 150, damage: 3, rate: 20, multishot: 5, ...getTowerIcon('swarm_icon') },
+    orbital: { id: 'orbital', name: 'Orbital', cost: 420, range: 300, damage: 45, rate: 90, satellite: true, ...getTowerIcon('orbital_icon') },
+
+    // NEW: Cosmic/Magic Towers
+    timewarp: { id: 'timewarp', name: 'Time Warp', cost: 550, range: 250, damage: 0, rate: 300, type: 'timewarp', duration: 120, ...getTowerIcon('timewarp_icon') },
+    necromancer: { id: 'necromancer', name: 'Necromancer', cost: 650, range: 180, damage: 10, rate: 60, type: 'necromancer', ...getTowerIcon('necromancer_icon') },
+    blackhole: { id: 'blackhole', name: 'Black Hole', cost: 900, range: 200, damage: 200, rate: 400, type: 'blackhole', pullForce: 5, ...getTowerIcon('blackhole_icon') }
 };
+
 
 const baseHp = (wave: number) => 10 + wave * 2;
 
-export const ENEMIES: Record<EnemyId, EnemyData> = {
+export const ENEMIES: Record<string, EnemyData> = {
   troop: { id: 'troop', name: 'Troop', speed: 1.0, baseHp: 10, hp: baseHp, color: 'red', flying: false, size: { width: 10, height: 10 } },
-  scout_bike: { id: 'scout_bike', name: 'Scout Bike', speed: 3.0, baseHp: 6, hp: (w) => baseHp(w) * 0.6, color: 'orange', flying: false, size: { width: 15, height: 10 } },
-  technical: { id: 'technical', name: 'Technical', speed: 2.8, baseHp: 12, hp: (w) => baseHp(w) * 1.2, color: 'white', flying: false, size: { width: 20, height: 15 } },
-  jeep: { id: 'jeep', name: 'Jeep', speed: 2.5, baseHp: 18, hp: (w) => baseHp(w) * 1.8, color: 'lightgreen', flying: false, size: { width: 22, height: 16 } },
-  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: 'blue', flying: false, size: { width: 25, height: 18 } },
-  btr80: { id: 'btr80', name: 'BTR-80', speed: 1.5, baseHp: 40, hp: (w) => baseHp(w) * 4.0, color: 'darkgreen', flying: false, size: { width: 30, height: 20 } },
-  bmp2: { id: 'bmp2', name: 'BMP-2', speed: 1.8, baseHp: 30, hp: (w) => baseHp(w) * 3.0, color: 'darkgreen', flying: false, size: { width: 28, height: 20 } },
-  apc: { id: 'apc', name: 'APC', speed: 1.2, baseHp: 50, hp: (w) => baseHp(w) * 5.0, color: 'blue-grey', flying: false, size: { width: 32, height: 22 } },
+  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: '#1565C0', flying: false, size: { width: 25, height: 18 } },
   tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: 'green', flying: false, size: { width: 35, height: 25 } },
-  t72: { id: 't72', name: 'T-72', speed: 0.8, baseHp: 60, hp: (w) => baseHp(w) * 6.0, color: 'green', flying: false, size: { width: 35, height: 25 } },
-  t90: { id: 't90', name: 'T-90', speed: 0.7, baseHp: 100, hp: (w) => baseHp(w) * 10.0, color: 'darkgreen', flying: false, size: { width: 38, height: 28 } },
-  heavy_tank: { id: 'heavy_tank', name: 'Heavy Tank', speed: 0.4, baseHp: 150, hp: (w) => baseHp(w) * 15.0, color: 'darkgreen', flying: false, size: { width: 45, height: 35 } },
-  mi24_hind: { id: 'mi24_hind', name: 'Mi-24 Hind', speed: 3.5, baseHp: 60, hp: (w) => baseHp(w) * 6.0, color: 'brown', flying: true, size: { width: 40, height: 30 } },
-  su25_frogfoot: { id: 'su25_frogfoot', name: 'Su-25 Frogfoot', speed: 4.2, baseHp: 30, hp: (w) => baseHp(w) * 3.0, color: 'blue-grey', flying: true, size: { width: 35, height: 20 } },
-  jet: { id: 'jet', name: 'Jet', speed: 4.0, baseHp: 20, hp: (w) => baseHp(w) * 2.0, color: 'grey', flying: true, size: { width: 30, height: 15 } },
-  boss: { id: 'boss', name: 'Boss', speed: 0.3, baseHp: 500, hp: (w) => baseHp(w) * 50.0, color: 'darkred', flying: false, size: { width: 60, height: 50 } },
-  scud_launcher: { id: 'scud_launcher', name: 'Scud Launcher', speed: 0.4, baseHp: 400, hp: (w) => baseHp(w) * 40.0, color: 'darkgreen', flying: false, size: { width: 70, height: 30 } },
+  reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 8, hp: (w) => baseHp(w) * 0.8, color: '#795548', flying: false, size: { width: 10, height: 10 } },
 };
 
 export const LEVELS: LevelData[] = [
   { level: 1, name: "Winding Path", path: [ {x:0,y:4},{x:1,y:4},{x:2,y:4},{x:3,y:4},{x:4,y:4},{x:4,y:5},{x:4,y:6},{x:3,y:6},{x:2,y:6},{x:2,y:7},{x:2,y:8},{x:2,y:9},{x:3,y:9},{x:4,y:9},{x:5,y:9},{x:6,y:9},{x:6,y:8},{x:6,y:7},{x:6,y:6},{x:7,y:6},{x:8,y:6},{x:9,y:6},{x:10,y:6},{x:11,y:6},{x:12,y:6},{x:12,y:7},{x:12,y:8},{x:12,y:9},{x:12,y:10},{x:12,y:11},{x:13,y:11},{x:14,y:11},{x:15,y:11},{x:16,y:11},{x:17,y:11},{x:18,y:11},{x:19,y:11},{x:20,y:11},{x:21,y:11},{x:22,y:11},{x:22,y:10},{x:22,y:9},{x:22,y:8},{x:21,y:8},{x:20,y:8},{x:19,y:8},{x:18,y:8},{x:18,y:7},{x:18,y:6},{x:18,y:5},{x:18,y:4},{x:19,y:4},{x:20,y:4},{x:21,y:4},{x:22,y:4},{x:23,y:4},{x:24,y:4},{x:25,y:4},{x:26,y:4},{x:27,y:4},{x:28,y:4},{x:29,y:4} ]},
-  { level: 2, name: "Zig Zag", path: [ {x:2,y:0},{x:2,y:1},{x:2,y:2},{x:3,y:2},{x:4,y:2},{x:4,y:3},{x:4,y:4},{x:3,y:4},{x:2,y:4},{x:2,y:5},{x:2,y:6},{x:3,y:6},{x:4,y:6},{x:4,y:7},{x:4,y:8},{x:5,y:8},{x:6,y:8},{x:7,y:8},{x:8,y:8},{x:8,y:7},{x:8,y:6},{x:8,y:5},{x:8,y:4},{x:9,y:4},{x:10,y:4},{x:11,y:4},{x:12,y:4},{x:13,y:4},{x:14,y:4},{x:14,y:5},{x:14,y:6},{x:14,y:7},{x:14,y:8},{x:15,y:8},{x:16,y:8},{x:17,y:8},{x:18,y:8},{x:18,y:9},{x:18,y:10},{x:18,y:11},{x:18,y:12},{x:17,y:12},{x:16,y:12},{x:16,y:13},{x:16,y:14},{x:17,y:14},{x:18,y:14},{x:19,y:14},{x:20,y:14},{x:21,y:14},{x:22,y:14},{x:23,y:14},{x:24,y:14},{x:24,y:13},{x:24,y:12},{x:24,y:11},{x:24,y:10},{x:24,y:9},{x:25,y:9},{x:26,y:9},{x:27,y:9},{x:27,y:8},{x:27,y:7},{x:27,y:6},{x:27,y:5},{x:27,y:4},{x:27,y:3},{x:27,y:2},{x:28,y:2},{x:29,y:2}, ]},
-  { level: 3, name: "Spiral", path: [ {x:0,y:0},{x:1,y:0},{x:2,y:0},{x:3,y:0},{x:4,y:0},{x:5,y:0},{x:6,y:0},{x:7,y:0},{x:8,y:0},{x:9,y:0},{x:10,y:0},{x:11,y:0},{x:12,y:0},{x:13,y:0},{x:14,y:0},{x:15,y:0},{x:16,y:0},{x:17,y:0},{x:18,y:0},{x:19,y:0},{x:20,y:0},{x:21,y:0},{x:22,y:0},{x:23,y:0},{x:24,y:0},{x:25,y:0},{x:26,y:0},{x:27,y:0},{x:28,y:0},{x:29,y:0},{x:29,y:1},{x:29,y:2},{x:29,y:3},{x:29,y:4},{x:29,y:5},{x:29,y:6},{x:29,y:7},{x:29,y:8},{x:29,y:9},{x:29,y:10},{x:29,y:11},{x:29,y:12},{x:29,y:13},{x:29,y:14},{x:29,y:15},{x:29,y:16},{x:29,y:17},{x:29,y:18},{x:29,y:19},{x:28,y:19},{x:27,y:19},{x:26,y:19},{x:25,y:19},{x:24,y:19},{x:23,y:19},{x:22,y:19},{x:21,y:19},{x:20,y:19},{x:19,y:19},{x:18,y:19},{x:17,y:19},{x:16,y:19},{x:15,y:19},{x:14,y:19},{x:13,y:19},{x:12,y:19},{x:11,y:19},{x:10,y:19},{x:9,y:19},{x:8,y:19},{x:7,y:19},{x:6,y:19},{x:5,y:19},{x:4,y:19},{x:3,y:19},{x:2,y:19},{x:1,y:19},{x:1,y:18},{x:1,y:17},{x:1,y:16},{x:1,y:15},{x:1,y:14},{x:1,y:13},{x:1,y:12},{x:1,y:11},{x:1,y:10},{x:1,y:9},{x:1,y:8},{x:1,y:7},{x:1,y:6},{x:1,y:5},{x:1,y:4},{x:1,y:3},{x:1,y:2},{x:2,y:2},{x:3,y:2},{x:4,y:2},{x:5,y:2},{x:6,y:2},{x:7,y:2},{x:8,y:2},{x:9,y:2},{x:10,y:2},{x:11,y:2},{x:12,y:2},{x:13,y:2},{x:14,y:2},{x:15,y:2},{x:16,y:2},{x:17,y:2},{x:18,y:2},{x:19,y:2},{x:20,y:2},{x:21,y:2},{x:22,y:2},{x:23,y:2},{x:24,y:2},{x:25,y:2},{x:26,y:2},{x:27,y:2},{x:27,y:3},{x:27,y:4},{x:27,y:5},{x:27,y:6},{x:27,y:7},{x:27,y:8},{x:27,y:9},{x:27,y:10},{x:27,y:11},{x:27,y:12},{x:27,y:13},{x:27,y:14},{x:27,y:15},{x:27,y:16},{x:27,y:17},{x:26,y:17},{x:25,y:17},{x:24,y:17},{x:23,y:17},{x:22,y:17},{x:21,y:17},{x:20,y:17},{x:19,y:17},{x:18,y:17},{x:17,y:17},{x:16,y:17},{x:15,y:17},{x:14,y:17},{x:13,y:17},{x:12,y:17},{x:11,y:17},{x:10,y:17},{x:9,y:17},{x:8,y:17},{x:7,y:17},{x:6,y:17},{x:5,y:17},{x:4,y:17},{x:3,y:17},{x:3,y:16},{x:3,y:15},{x:3,y:14},{x:3,y:13},{x:3,y:12},{x:3,y:11},{x:3,y:10},{x:3,y:9},{x:3,y:8},{x:3,y:7},{x:3,y:6},{x:3,y:5},{x:3,y:4},{x:4,y:4},{x:5,y:4},{x:6,y:4},{x:7,y:4},{x:8,y:4},{x:9,y:4},{x:10,y:4},{x:11,y:4},{x:12,y:4},{x:13,y:4},{x:14,y:4},{x:15,y:4},{x:16,y:4},{x:17,y:4},{x:18,y:4},{x:19,y:4},{x:20,y:4},{x:21,y:4},{x:22,y:4},{x:23,y:4},{x:24,y:4},{x:25,y:4},{x:25,y:5},{x:25,y:6},{x:25,y:7},{x:25,y:8},{x:25,y:9},{x:25,y:10},{x:25,y:11},{x:25,y:12},{x:25,y:13},{x:25,y:14},{x:25,y:15},{x:24,y:15},{x:23,y:15},{x:22,y:15},{x:21,y:15},{x:20,y:15},{x:19,y:15},{x:18,y:15},{x:17,y:15},{x:16,y:15},{x:15,y:15},{x:14,y:15},{x:13,y:15},{x:12,y:15},{x:11,y:15},{x:10,y:15},{x:9,y:15},{x:8,y:15},{x:7,y:15},{x:6,y:15},{x:5,y:15},{x:5,y:14},{x:5,y:13},{x:5,y:12},{x:5,y:11},{x:5,y:10},{x:5,y:9},{x:5,y:8},{x:5,y:7},{x:5,y:6},{x:6,y:6},{x:7,y:6},{x:8,y:6},{x:9,y:6},{x:10,y:6},{x:11,y:6},{x:12,y:6},{x:13,y:6},{x:14,y:6},{x:15,y:6},{x:16,y:6},{x:17,y:6},{x:18,y:6},{x:19,y:6},{x:20,y:6},{x:21,y:6},{x:22,y:6},{x:23,y:6},{x:23,y:7},{x:23,y:8},{x:23,y:9},{x:23,y:10},{x:23,y:11},{x:23,y:12},{x:23,y:13},{x:22,y:13},{x:21,y:13},{x:20,y:13},{x:19,y:13},{x:18,y:13},{x:17,y:13},{x:16,y:13},{x:15,y:13},{x:14,y:13},{x:13,y:13},{x:12,y:13},{x:11,y:13},{x:10,y:13},{x:9,y:13},{x:8,y:13},{x:7,y:13},{x:7,y:12},{x:7,y:11},{x:7,y:10},{x:7,y:9},{x:7,y:8},{x:8,y:8},{x:9,y:8},{x:10,y:8},{x:11,y:8},{x:12,y:8},{x:13,y:8},{x:14,y:8},{x:15,y:8},{x:16,y:8},{x:17,y:8},{x:18,y:8},{x:19,y:8},{x:20,y:8},{x:21,y:8},{x:21,y:9},{x:21,y:10},{x:21,y:11},{x:20,y:11},{x:19,y:11},{x:18,y:11},{x:17,y:11},{x:16,y:11},{x:15,y:11},{x:14,y:11},{x:13,y:11},{x:12,y:11},{x:11,y:11},{x:10,y:11},{x:9,y:11},{x:9,y:10},{x:10,y:10},{x:11,y:10},{x:12,y:10},{x:13,y:10},{x:14,y:10},{x:15,y:10},{x:16,y:10},{x:17,y:10},{x:18,y:10},{x:19,y:10} ]},
+  { level: 2, name: "Complex Path", path: [] },
 ];
+
+function rasterizePath(pathPoints: {x:number, y:number}[]) {
+    const path = [];
+    if (pathPoints.length === 0) return [];
+    let current = pathPoints[0];
+    path.push({ ...current });
+
+    for (let i = 1; i < pathPoints.length; i++) {
+        const next = pathPoints[i];
+        while (current.x !== next.x || current.y !== next.y) {
+            if (current.x < next.x) current.x++;
+            else if (current.x > next.x) current.x--;
+            else if (current.y < next.y) current.y++;
+            else if (current.y > next.y) current.y--;
+            path.push({ ...current });
+        }
+    }
+    return path;
+}
+
+const complexPathPoints = [
+    { x: 0, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 15 }, { x: 12, y: 15 },
+    { x: 12, y: 4 }, { x: 20, y: 4 }, { x: 20, y: 12 }, { x: 15, y: 12 },
+    { x: 15, y: 17 }, { x: 25, y: 17 }, { x: 25, y: 8 }, { x: 29, y: 8 }
+];
+LEVELS[1].path = rasterizePath(complexPathPoints);
 
 
 export const ENEMIES_BY_WAVE: Record<number, EnemyId[]> = {
     1: ['troop', 'troop', 'troop', 'troop', 'troop'],
-    2: ['troop', 'troop', 'scout_bike', 'troop', 'scout_bike'],
-    3: ['scout_bike', 'scout_bike', 'technical'],
-    4: ['technical', 'technical', 'humvee'],
-    5: ['jeep', 'jeep', 'humvee', 'boss'],
-    6: ['btr80', 'btr80', 'humvee'],
-    7: ['bmp2', 'bmp2', 'btr80'],
-    8: ['apc', 'apc', 'bmp2'],
-    9: ['apc', 'tank', 'apc'],
-    10: ['tank', 'tank', 'scud_launcher'],
-    11: ['t72', 't72', 'tank'],
-    12: ['t90', 't72', 't90'],
-    13: ['t90', 'heavy_tank'],
-    14: ['heavy_tank', 'heavy_tank'],
-    15: ['heavy_tank', 'heavy_tank', 'boss'],
-    18: ['mi24_hind', 'mi24_hind'],
-    19: ['su25_frogfoot', 'su25_frogfoot', 'mi24_hind'],
-    20: ['jet', 'jet', 'su25_frogfoot', 'scud_launcher'],
+    2: ['troop', 'troop', 'reindeer', 'troop', 'reindeer'],
+    3: ['reindeer', 'reindeer', 'humvee'],
+    4: ['humvee', 'humvee', 'humvee'],
+    5: ['humvee', 'humvee', 'tank'],
+    6: ['tank', 'tank', 'humvee'],
+    7: ['tank', 'tank', 'tank'],
 };
