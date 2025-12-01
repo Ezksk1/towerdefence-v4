@@ -474,8 +474,12 @@ export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, 
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
-    ctx.lineWidth = GAME_CONFIG.CELL_WIDTH + 4;
-    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+    // Make the path wider
+    const pathWidth = GAME_CONFIG.CELL_WIDTH * 1.5;
+
+    // Shadow/border layer
+    ctx.lineWidth = pathWidth + 8;
+    ctx.strokeStyle = 'rgba(0,0,0,0.2)';
     ctx.beginPath();
     ctx.moveTo(path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2, path[0].y * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT/2);
     for (let i = 1; i < path.length; i++) {
@@ -483,13 +487,15 @@ export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, 
     }
     ctx.stroke();
 
-    ctx.lineWidth = GAME_CONFIG.CELL_WIDTH - 2;
-    ctx.strokeStyle = '#795548';
+    // Main path layer
+    ctx.lineWidth = pathWidth;
+    ctx.strokeStyle = '#A0522D'; // A dirt/mud color
     ctx.stroke();
 
-    ctx.lineWidth = GAME_CONFIG.CELL_WIDTH - 10;
-    ctx.strokeStyle = '#8D6E63';
-    ctx.setLineDash([10, 10]);
+    // Texture layer
+    ctx.lineWidth = pathWidth - 12;
+    ctx.strokeStyle = '#8B4513'; // Darker dirt color
+    ctx.setLineDash([15, 15]);
     ctx.stroke();
     ctx.setLineDash([]);
   }, [gameState.currentLevel]);
