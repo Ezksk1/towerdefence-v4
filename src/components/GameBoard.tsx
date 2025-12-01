@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useCallback, useMemo } from "react";
-import type { GameState, PlacedTower, ActiveEnemy, Decoration } from "@/lib/types";
+import type { GameState, PlacedTower, ActiveEnemy, Decoration, Projectile } from "@/lib/types";
 import { GAME_CONFIG, LEVELS } from "@/lib/game-config";
 import { useToast } from "@/hooks/use-toast";
 
@@ -68,7 +68,30 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
     ctx.rotate(t.angle || 0);
 
     // --- Tower Specific Designs ---
-    if (type.includes('trooper') || type.includes('commando')) {
+    if (type.includes('lightning spire')) {
+        // Large crystal structure
+        ctx.fillStyle = lightenColor(color, 20);
+        ctx.beginPath();
+        ctx.moveTo(0, -25);
+        ctx.lineTo(10, 0);
+        ctx.lineTo(-10, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Glowing Core
+        const coreGrad = ctx.createRadialGradient(0, -5, 2, 0, -5, 8);
+        coreGrad.addColorStop(0, '#fff');
+        coreGrad.addColorStop(0.5, color);
+        coreGrad.addColorStop(1, 'rgba(255, 215, 0, 0)');
+        ctx.fillStyle = coreGrad;
+        ctx.beginPath();
+        ctx.arc(0, -5, 8, 0, Math.PI * 2);
+        ctx.fill();
+
+    } else if (type.includes('trooper') || type.includes('commando')) {
         // Sandbag wall
         ctx.fillStyle = '#C2B280';
         ctx.beginPath();
@@ -528,10 +551,29 @@ export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, 
   const drawProjectiles = useCallback((ctx: CanvasRenderingContext2D) => {
     gameState.projectiles.forEach(p => {
         if(!p.active) return;
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-        ctx.fill();
+        
+        if (p.config.chain && p.chainTargets) {
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 2;
+            ctx.globalAlpha = 0.8;
+
+            let lastTarget: ActiveEnemy | {x:number, y:number} = p.target;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(lastTarget.x, lastTarget.y);
+            
+            p.chainTargets.forEach(chainTarget => {
+                ctx.lineTo(chainTarget.x, chainTarget.y);
+                lastTarget = chainTarget;
+            });
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+        } else {
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
     });
   }, [gameState.projectiles]);
 

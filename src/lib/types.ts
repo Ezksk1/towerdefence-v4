@@ -17,7 +17,7 @@ export type TowerId =
   | 'timewarp' | 'necromancer' | 'blackhole'
   | 's400' | 'challenger2' | 'caesar' | 'leopard2' | 'irondome' | 'type99' | 'type10'
   | 'eagle_usa' | 'panda_china' | 'bear_russia' | 'tiger_india' | 'kangaroo_aus' | 'beaver_canada' | 'lion_uk' | 'dragon_wales'
-  | 'commando';
+  | 'commando' | 'lightning_spire';
 
 
 export interface TowerData {
@@ -136,6 +136,7 @@ export interface Projectile {
     active: boolean;
     config: Partial<TowerData>;
     type?: string;
+    chainTargets?: ActiveEnemy[];
 }
 
 export type GameStatus = 'playing' | 'paused' | 'game-over' | 'level-complete';

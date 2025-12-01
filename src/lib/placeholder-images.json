@@ -87,7 +87,7 @@
     {
       "id": "ac130_icon",
       "description": "Icon for AC-130",
-      "imageUrl": "https://images.unsplash.com/photo-1749867052986-532f009179ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxndW5zaGlwJTIwcGxhbmV8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1749867052986-532f009179ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxndW5zaGlwJTIwcGxhbmV8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "gunship plane"
     },
     {
@@ -99,7 +99,7 @@
     {
       "id": "javelin_icon",
       "description": "Icon for Javelin Team",
-      "imageUrl": "https://images.unsplash.com/photo-1727896908559-9b760d5e82cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtaXNzaWxlJTIwbGF1bmNoZXJ8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1727896908559-9b760d5e82cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtaXNzaWxlJTIwbGF1bmNoZXJ8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "missile launcher"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "patriot_icon",
       "description": "Icon for Patriot System",
-      "imageUrl": "https://images.unsplash.com/photo-1648281315089-7e54e0c6149c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaXNzaWxlJTIwc3lzdGVtfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1648281315089-7e54e0c6149c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaXNzaWxlJTIwc3lzdGVtfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "missile system"
     },
     {
@@ -147,37 +147,37 @@
     {
       "id": "s400_icon",
       "description": "Icon for S-400",
-      "imageUrl": "https://images.unsplash.com/photo-1727896908559-9b760d5e82cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtaXNzaWxlJTIwZGVmZW5zZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1727896908559-9b760d5e82cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtaXNzaWxlJTIwZGVmZW5zZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "missile defense"
     },
     {
       "id": "challenger2_icon",
       "description": "Icon for Challenger 2",
-      "imageUrl": "https://images.unsplash.com/photo-1610652083087-8cc581849783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx1ayUyMHRhbmt8ZW58MHx8fHwxNzY0NTU4ODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1610652083087-8cc581849783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx1ayUyMHRhbmt8ZW58MHx8fHwxNzY0NTU4ODU4fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "uk tank"
     },
     {
       "id": "caesar_icon",
       "description": "Icon for CAESAR",
-      "imageUrl": "https://images.unsplash.com/photo-1632590878302-bf9f1a570efc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmcmVuY2glMjBhcnRpbGxlcnl8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1632590878302-bf9f1a570efc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmcmVuY2glMjBhcnRpbGxlcnl8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "french artillery"
     },
     {
       "id": "leopard2_icon",
       "description": "Icon for Leopard 2",
-      "imageUrl": "https://images.unsplash.com/photo-1744446726182-0c5f61bffa7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z2VybWFuJTIwdGFua3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1744446726182-0c5f61bffa7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z2VybWFuJTIwdGFua3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "german tank"
     },
     {
       "id": "irondome_icon",
       "description": "Icon for Iron Dome",
-      "imageUrl": "https://images.unsplash.com/photo-1709987236893-92a2ed1ea175?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxpc3JhZWxpJTIwZGVmZW5zZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1709987236893-92a2ed1ea175?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxpc3JhZWxpJTIwZGVmZW5zZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "israeli defense"
     },
     {
       "id": "type99_icon",
       "description": "Icon for Type 99",
-      "imageUrl": "https://images.unsplash.com/photo-1755335853548-52622a24b11c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGluZXNlJTIwdGFua3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1755335853548-52622a24b11c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGluZXNlJTIwdGFua3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "chinese tank"
     },
     {
@@ -189,7 +189,7 @@
     {
       "id": "eagle_usa_icon",
       "description": "Icon for Eagle",
-      "imageUrl": "https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiYWxkJTIwZWFnbGV8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiYWxkJTIwZWFnbGV8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "bald eagle"
     },
     {
@@ -437,6 +437,12 @@
       "description": "Icon for Black Hole",
       "imageUrl": "https://images.unsplash.com/photo-1670884307164-a652a34f23da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibGFjayUyMGhvbGV8ZW58MHx8fHwxNzY0NDU1NTE5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "black hole"
+    },
+    {
+      "id": "lightning_spire_icon",
+      "description": "Icon for Lightning Spire",
+      "imageUrl": "https://images.unsplash.com/photo-1696351808576-e882b848b93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodG5pbmclMjBzdG9ybXxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lightning storm"
     }
   ]
 }

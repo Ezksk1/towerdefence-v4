@@ -90,7 +90,8 @@ export const TOWERS: Record<TowerId, TowerData> = {
     orbital: { id: 'orbital', name: 'Orbital', cost: 420, range: 300, damage: 45, rate: 90, color: '#0277BD', satellite: true, ...getTowerIcon('orbital_icon') },
     timewarp: { id: 'timewarp', name: 'Time Warp', cost: 550, range: 250, damage: 0, rate: 300, color: '#009688', type: 'timewarp', duration: 120, ...getTowerIcon('timewarp_icon') },
     necromancer: { id: 'necromancer', name: 'Necromancer', cost: 650, range: 180, damage: 10, rate: 60, color: '#311B92', type: 'necromancer', ...getTowerIcon('necromancer_icon') },
-    blackhole: { id: 'blackhole', name: 'Black Hole', cost: 900, range: 200, damage: 200, rate: 400, color: '#000', type: 'blackhole', pullForce: 5, ...getTowerIcon('blackhole_icon') }
+    blackhole: { id: 'blackhole', name: 'Black Hole', cost: 900, range: 200, damage: 200, rate: 400, color: '#000', type: 'blackhole', pullForce: 5, ...getTowerIcon('blackhole_icon') },
+    lightning_spire: { id: 'lightning_spire', name: 'Lightning Spire', cost: 5000, range: 200, damage: 100, rate: 50, color: '#FFD700', chain: 5, type: 'lightning_spire', ...getTowerIcon('lightning_spire_icon') }
 };
 
 

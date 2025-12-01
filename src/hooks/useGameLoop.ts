@@ -114,25 +114,30 @@ export function useGameLoop(
                 }
 
                 if (newTower.cooldown <= 0) {
-                    // Find target
-                    let target: ActiveEnemy | null = null;
-                    let minDist = Infinity;
-                    updatedEnemies.forEach(e => {
-                        const dist = Math.hypot(e.x - newTower.x, e.y - newTower.y);
-                        if (dist <= newTower.range && dist < minDist) {
-                            minDist = dist;
-                            target = e;
-                        }
-                    });
+                    const findTargets = (center: PlacedTower, enemies: ActiveEnemy[], count: number) => {
+                        return enemies.filter(e => Math.hypot(e.x - center.x, e.y - center.y) <= center.range)
+                                      .sort((a,b) => Math.hypot(a.x - center.x, a.y - center.y) - Math.hypot(b.x - center.x, b.y - center.y))
+                                      .slice(0, count);
+                    };
 
-                    if (target) {
-                        newTower.angle = Math.atan2(target.y - newTower.y, target.x - newTower.x);
+                    const mainTargets = findTargets(newTower, updatedEnemies, 1);
+
+                    if (mainTargets.length > 0) {
+                        const mainTarget = mainTargets[0];
+                        newTower.angle = Math.atan2(mainTarget.y - newTower.y, mainTarget.x - newTower.x);
                         
+                        let chainTargets: ActiveEnemy[] = [];
+                        if (newTower.chain) {
+                            const potentialChainTargets = updatedEnemies.filter(e => e.idInGame !== mainTarget.idInGame && Math.hypot(e.x - mainTarget.x, e.y - mainTarget.y) <= 100); // 100 is chain range
+                            chainTargets = findTargets({ ...newTower, x: mainTarget.x, y: mainTarget.y }, potentialChainTargets, newTower.chain - 1);
+                        }
+
                         newProjectiles.push({
                             id: crypto.randomUUID(),
                             x: newTower.x,
                             y: newTower.y,
-                            target: target,
+                            target: mainTarget,
+                            chainTargets: chainTargets,
                             config: newTower,
                             speed: 8,
                             damage: newTower.damage,
@@ -165,23 +170,28 @@ export function useGameLoop(
                 if (dist < p.speed) {
                     p.active = false; // Deactivate projectile on hit
 
-                    // Apply damage
-                    if (p.splash > 0) {
-                        // Splash damage
+                    const applyDamage = (enemyId: string, damage: number) => {
                         enemiesAfterHits = enemiesAfterHits.map(enemy => {
-                            if (Math.hypot(enemy.x - pTarget.x, enemy.y - pTarget.y) <= p.splash) {
-                                enemy.currentHp -= p.damage;
+                            if (enemy.idInGame === enemyId) {
+                                enemy.currentHp -= damage;
                             }
                             return enemy;
+                        });
+                    };
+
+                    if (p.splash > 0) {
+                        enemiesAfterHits.forEach(enemy => {
+                            if (Math.hypot(enemy.x - pTarget.x, enemy.y - pTarget.y) <= p.splash) {
+                                applyDamage(enemy.idInGame, p.damage);
+                            }
                         });
                     } else {
-                        // Single target damage
-                        enemiesAfterHits = enemiesAfterHits.map(enemy => {
-                            if (enemy.idInGame === pTarget.idInGame) {
-                                enemy.currentHp -= p.damage;
-                            }
-                            return enemy;
-                        });
+                        applyDamage(pTarget.idInGame, p.damage);
+                        if (p.chainTargets && p.chainTargets.length > 0) {
+                            p.chainTargets.forEach(chainTarget => {
+                                applyDamage(chainTarget.idInGame, p.damage / 2); // Chain damage is halved
+                            });
+                        }
                     }
                 } else {
                     // Move projectile

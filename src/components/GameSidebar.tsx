@@ -111,6 +111,11 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave, onPau
       <div id="tower-list">
         {Object.values(TOWERS).map((tower) => {
           if (!tower || !tower.id) return null;
+          
+          if (tower.id === 'lightning_spire' && gameState.wave < 1000) {
+            return null;
+          }
+
           const canAfford = gameState.money >= tower.cost;
           return (
             <div
