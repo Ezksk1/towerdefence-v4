@@ -69,18 +69,27 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
 
     // --- Tower Specific Designs ---
     if (type.includes('turret') || type.includes('trooper') || type.includes('browning')) {
-        const gradBody = ctx.createRadialGradient(-3, -3, 2, 0, 0, 12);
+        // Sandbag wall for troopers and machine guns
+        ctx.fillStyle = '#C2B280';
+        ctx.beginPath();
+        ctx.arc(0, 0, 14, Math.PI * 0.7, Math.PI * 2.3);
+        ctx.fill();
+        ctx.fillStyle = '#A49670';
+        ctx.fillRect(-10, -1, 8, 2);
+        ctx.fillRect(-12, 1, 8, 2);
+        ctx.fillRect(-12, 3, 10, 2);
+        
+        // Gun
+        const gradBody = ctx.createRadialGradient(-3, -3, 2, 0, 0, 8);
         gradBody.addColorStop(0, lightenColor(color, 40));
         gradBody.addColorStop(1, color);
         ctx.fillStyle = gradBody;
         ctx.beginPath();
-        ctx.arc(0, 0, 11, 0, Math.PI * 2);
+        ctx.arc(0, 0, 6, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.fillStyle = '#222';
-        ctx.fillRect(6, -3, 14, 6); // Barrel base
-        ctx.fillStyle = color;
-        ctx.fillRect(0, -4, 6, 8); // Body plate
+        ctx.fillRect(4, -2, 16, 4); // Barrel
     } else if (type.includes('sniper') || type.includes('barrett')) {
         ctx.fillStyle = color;
         ctx.fillRect(-8, -4, 16, 8);
@@ -103,16 +112,22 @@ export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower
         ctx.lineTo(8, 4);
         ctx.closePath();
         ctx.fill();
-    } else if (type.includes('bomber') || type.includes('mortar') || type.includes('artillery') || type.includes('rocket')) {
+    } else if (type.includes('bomber') || type.includes('mortar') || type.includes('artillery') || type.includes('rocket') || type.includes('caesar')) {
+        // Artillery-style base
         ctx.fillStyle = color;
-        ctx.fillRect(-10, -6, 20, 12);
-        ctx.fillStyle = lightenColor(color, -20);
-        ctx.fillRect(-8, -8, 16, 16);
-        ctx.fillStyle = '#222';
-        ctx.fillRect(4, -4, 18, 8);
         ctx.beginPath();
-        ctx.arc(22, 0, 4, 0, Math.PI * 2);
+        ctx.moveTo(-10, 8);
+        ctx.lineTo(10, 8);
+        ctx.lineTo(8, -8);
+        ctx.lineTo(-8, -8);
+        ctx.closePath();
         ctx.fill();
+        // Barrel
+        ctx.fillStyle = '#333';
+        ctx.save();
+        ctx.rotate(-Math.PI / 6); // Angle barrel up
+        ctx.fillRect(0, -4, 25, 8);
+        ctx.restore();
     } else if (type.includes('abrams') || type.includes('challenger') || type.includes('leopard') || type.includes('type')) {
          // Tank-like chassis
         ctx.fillStyle = color;
@@ -511,3 +526,5 @@ export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, 
       />
   );
 }
+
+    
