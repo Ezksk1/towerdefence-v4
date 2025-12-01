@@ -15,11 +15,12 @@ interface GameSidebarProps {
 
 const TowerPreview = ({ tower }: { tower: TowerData }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const animationFrameId = useRef<number>();
+    const angle = useRef(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas || !tower) return;
-
         const ctx = canvas.getContext('2d');
         if(!ctx) return;
 
@@ -27,21 +28,33 @@ const TowerPreview = ({ tower }: { tower: TowerData }) => {
         canvas.width = previewSize;
         canvas.height = previewSize;
 
-        ctx.clearRect(0, 0, previewSize, previewSize);
+        const animate = () => {
+            angle.current += 0.01; // Rotation speed
+            
+            ctx.clearRect(0, 0, previewSize, previewSize);
+    
+            const placedTower: PlacedTower = {
+                ...tower,
+                idInGame: 'preview',
+                x: previewSize / 2,
+                y: previewSize / 2,
+                gridX: 0,
+                gridY: 0,
+                cooldown: 0,
+                angle: angle.current,
+            };
+            
+            drawRealisticTower(ctx, placedTower);
+            animationFrameId.current = requestAnimationFrame(animate);
+        }
 
-        const placedTower: PlacedTower = {
-            ...tower,
-            idInGame: 'preview',
-            x: previewSize / 2,
-            y: previewSize / 2,
-            gridX: 0,
-            gridY: 0,
-            cooldown: 0,
-            angle: -Math.PI / 4, // Angled for a better preview
+        animate();
+
+        return () => {
+            if(animationFrameId.current) {
+                cancelAnimationFrame(animationFrameId.current);
+            }
         };
-        
-        drawRealisticTower(ctx, placedTower);
-
     }, [tower]);
 
     return <canvas ref={canvasRef} />;
@@ -81,6 +94,7 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
       
       <div id="tower-list">
         {Object.values(TOWERS).filter(tower => tower && tower.id).map((tower) => {
+          if (!tower || !tower.id) return null;
           const canAfford = gameState.money >= tower.cost;
           return (
             <div
