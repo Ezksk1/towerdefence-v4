@@ -69,6 +69,8 @@ export const DIY_COMPONENTS: {
     { id: 'piercing', name: 'Piercing Rounds', description: 'Projectiles pierce 3 enemies', cost: 200, pierce: 3 },
     { id: 'poison', name: 'Poison Coating', description: 'Adds damage over time', cost: 125, poison: 5 },
     { id: 'rangefinder', name: 'Advanced Rangefinder', description: '+50% Range', cost: 250, rangeMultiplier: 1.5 },
+    { id: 'dual_target', name: 'Dual-Targeting', description: 'Can target 2 enemies at once', cost: 300, chainBonus: 2 },
+    { id: 'multi_target', name: 'Multi-Targeting', description: 'Can target 3 enemies at once', cost: 500, chainBonus: 3 },
   ]
 };
 

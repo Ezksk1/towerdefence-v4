@@ -65,8 +65,8 @@ export interface TowerData {
 }
 
 export type DIYChassisId = 'light' | 'medium' | 'heavy' | 'stealth' | 'armored';
-export type DIYWeaponId = 'gun' | 'cannon' | 'laser' | 'rocket' | 'flamethrower' | 'tesla';
-export type DIYAccessoryId = 'none' | 'scope' | 'aoe' | 'frost' | 'autoloader' | 'piercing' | 'poison' | 'rangefinder';
+export type DIYWeaponId = 'gun' | 'cannon' | 'laser' | 'rocket' | 'flamethrower' | 'tesla' | 'turret_w' | 'sniper_w' | 'blaster_w' | 'bomber_w' | 'rapid_fire_w' | 'm4_trooper_w' | 'barrett_50_w' | 'm2_browning_w' | 'm1_abrams_w' | 'ciws_w' | 'javelin_w' | 'commando_w' | 's400_w' | 'caesar_w' | 'lightning_spire_w';
+export type DIYAccessoryId = 'none' | 'scope' | 'aoe' | 'frost' | 'autoloader' | 'piercing' | 'poison' | 'rangefinder' | 'dual_target' | 'multi_target';
 
 export interface DIYChassis {
   id: DIYChassisId;
@@ -102,6 +102,7 @@ export interface DIYAccessory {
   slow?: number;
   pierce?: number;
   poison?: number;
+  chainBonus?: number;
 }
 
 

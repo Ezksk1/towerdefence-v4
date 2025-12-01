@@ -178,6 +178,8 @@ const DIYTowerBuilder = ({ onSave }: { onSave: (tower: DIYTower) => void }) => {
     const range = weapon.range * (accessory.rangeMultiplier || 1);
     const rate = weapon.rate * (accessory.rateMultiplier || 1);
     const splash = (weapon.splash || 0) + (accessory.splashBonus || 0);
+    const chain = (weapon.chain || 1) + (accessory.chainBonus || 0) -1;
+
 
     const newTower: DIYTower = {
       id: `custom_${Date.now()}`,
@@ -188,7 +190,7 @@ const DIYTowerBuilder = ({ onSave }: { onSave: (tower: DIYTower) => void }) => {
       rate,
       splash: splash > 0 ? splash : undefined,
       burn: weapon.burn,
-      chain: weapon.chain,
+      chain: chain > 1 ? chain : undefined,
       slow: accessory.slow,
       pierce: accessory.pierce,
       poison: accessory.poison,
