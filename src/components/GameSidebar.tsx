@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { drawRealisticTower } from "@/components/GameBoard";
 import GameControls from "./GameControls";
 import { Button } from "./ui/button";
+import { X } from "lucide-react";
 
 interface GameSidebarProps {
   gameState: GameState;
@@ -75,7 +76,8 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave, onPau
   
   useEffect(() => {
     if(!selectedTower) {
-        setSelectedTower(TOWERS.turret);
+        // We can set a default tower to show on load if we want
+        // setSelectedTower(TOWERS.turret);
     }
   }, [selectedTower]);
 
@@ -86,7 +88,16 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave, onPau
       <p className="instruction">Drag towers to the battlefield</p>
 
       {selectedTower && (
-        <div id="tower-preview">
+        <div id="tower-preview" className="relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-0 right-0 h-6 w-6"
+            onClick={() => setSelectedTower(null)}
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close preview</span>
+          </Button>
           <TowerPreview tower={selectedTower} />
           <h3>{selectedTower.name}</h3>
           <p>Cost: ${selectedTower.cost}</p>
