@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useMemo } from "react";
 import type { GameState, PlacedTower, ActiveEnemy, Decoration } from "@/lib/types";
 import { GAME_CONFIG, LEVELS } from "@/lib/game-config";
 import { useToast } from "@/hooks/use-toast";
@@ -354,6 +354,20 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
 
 export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, canvasRef }: GameBoardProps) {
 
+  const snowTextures = useMemo(() => {
+    const textures = [];
+    const W = GAME_CONFIG.GRID_WIDTH;
+    const H = GAME_CONFIG.GRID_HEIGHT;
+    for (let i = 0; i < 50; i++) {
+        textures.push({
+            x: Math.random() * W,
+            y: H * 0.65 + Math.random() * (H * 0.35),
+            radius: Math.random() * 20 + 5,
+        });
+    }
+    return textures;
+  }, []);
+
   const drawBackground = useCallback((ctx: CanvasRenderingContext2D) => {
     const W = GAME_CONFIG.GRID_WIDTH;
     const H = GAME_CONFIG.GRID_HEIGHT;
@@ -399,12 +413,12 @@ export default function GameBoard({ gameState, onDrop, onDragOver, onDragLeave, 
 
     // Add some subtle texture to snow
     ctx.fillStyle = 'rgba(210, 220, 230, 0.3)';
-    for(let i=0; i<50; i++){
+    snowTextures.forEach(texture => {
         ctx.beginPath();
-        ctx.arc(Math.random()*W, H*0.65 + Math.random() * (H*0.35), Math.random()*20+5, 0, Math.PI*2);
+        ctx.arc(texture.x, texture.y, texture.radius, 0, Math.PI * 2);
         ctx.fill();
-    }
-}, []);
+    });
+}, [snowTextures]);
 
   const drawDecorations = useCallback((ctx: CanvasRenderingContext2D) => {
     gameState.decorations.forEach(d => {
