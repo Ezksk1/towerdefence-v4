@@ -72,7 +72,8 @@ export default function GameClient() {
     }
 
     setGameState(prev => {
-        const enemiesForThisSpawn = enemiesToSpawnRef.current.splice(0, Math.min(enemiesToSpawnRef.current.length, 5)); // Spawn up to 5 at a time
+        const groupSize = Math.min(enemiesToSpawnRef.current.length, 10 + Math.floor(prev.wave / 5));
+        const enemiesForThisSpawn = enemiesToSpawnRef.current.splice(0, groupSize); 
         const newEnemies = enemiesForThisSpawn.map((enemyId, index) => {
             const enemyData = ENEMIES[enemyId];
             if (!enemyData) return null;
@@ -81,7 +82,7 @@ export default function GameClient() {
             return {
                 ...enemyData,
                 idInGame: `${prev.wave}-${Date.now()}-${index}`,
-                x: path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2 - (index * 15), // Offset spawn
+                x: path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2 - (index * 25), // Offset spawn for tighter groups
                 y: path[0].y * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT/2,
                 currentHp: totalHp,
                 totalHp: totalHp,
@@ -109,7 +110,7 @@ export default function GameClient() {
       enemiesToSpawnRef.current = [...waveConfig];
 
       if(spawnIntervalRef.current) clearInterval(spawnIntervalRef.current);
-      spawnIntervalRef.current = setInterval(spawnGroup, 800); // Spawn a group every 0.8 seconds
+      spawnIntervalRef.current = setInterval(spawnGroup, 1500); // Spawn a group every 1.5 seconds
 
       return {
           ...prev,
