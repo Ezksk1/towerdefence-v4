@@ -42,6 +42,23 @@ export const DIY_COMPONENTS: {
     { id: 'rocket', name: 'Rocket Launcher', cost: 200, damage: 80, range: 200, rate: 100, splash: 50, color: '#FF5722', ...getTowerIcon('rocket_icon') },
     { id: 'flamethrower', name: 'Flamethrower', cost: 120, damage: 5, range: 80, rate: 10, burn: 2, color: '#FF9800', ...getTowerIcon('flame_icon') },
     { id: 'tesla', name: 'Tesla Coil', cost: 250, damage: 20, range: 140, rate: 60, chain: 3, color: '#3F51B5', ...getTowerIcon('tesla_icon') },
+    // -- Added from TOWERS --
+    { id: 'turret_w', name: 'Basic Turret Gun', cost: 25, damage: 10, range: 120, rate: 40, color: '#4CAF50', ...getTowerIcon('turret_icon') },
+    { id: 'sniper_w', name: 'Sniper Rifle', cost: 75, damage: 40, range: 250, rate: 100, color: '#2196F3', ...getTowerIcon('sniper_icon') },
+    { id: 'blaster_w', name: 'Energy Blaster', cost: 125, damage: 5, range: 90, rate: 10, color: '#FF9800', ...getTowerIcon('blaster_icon') },
+    { id: 'bomber_w', name: 'Bomb Dropper', cost: 175, damage: 20, range: 140, rate: 80, splash: 50, color: '#F44336', ...getTowerIcon('bomber_icon') },
+    { id: 'rapid_fire_w', name: 'Rapid Fire Gun', cost: 50, damage: 3, range: 100, rate: 8, color: '#FFEB3B', ...getTowerIcon('rapid_fire_icon') },
+    { id: 'm4_trooper_w', name: 'M4 Rifle', cost: 75, damage: 15, range: 120, rate: 30, color: '#795548', ...getTowerIcon('m4_trooper_icon') },
+    { id: 'barrett_50_w', name: 'Barrett .50 Cal', cost: 325, damage: 150, range: 400, rate: 120, color: '#3E2723', ...getTowerIcon('barrett_50_icon') },
+    { id: 'm2_browning_w', name: 'M2 Browning HMG', cost: 225, damage: 25, range: 180, rate: 10, color: '#212121', ...getTowerIcon('m2_browning_icon') },
+    { id: 'm1_abrams_w', name: 'M1 Abrams Cannon', cost: 575, damage: 80, range: 250, rate: 80, splash: 60, color: '#4CAF50', ...getTowerIcon('m1_abrams_icon') },
+    { id: 'ciws_w', name: 'CIWS Phalanx Vulcan', cost: 1475, damage: 8, range: 220, rate: 1, color: '#ECEFF1', ...getTowerIcon('ciws_icon') },
+    { id: 'javelin_w', name: 'Javelin Missile', cost: 375, damage: 120, range: 300, rate: 150, color: '#4E342E', ...getTowerIcon('javelin_icon') },
+    { id: 'commando_w', name: 'Commando SMG', cost: 575, damage: 30, range: 150, rate: 20, color: '#1B5E20', ...getTowerIcon('commando_icon') },
+    { id: 's400_w', name: 'S-400 Missile', cost: 1775, damage: 350, range: 550, rate: 180, splash: 120, color: '#8B0000', ...getTowerIcon('s400_icon') },
+    { id: 'caesar_w', name: 'CAESAR Howitzer', cost: 875, damage: 120, range: 400, rate: 110, splash: 85, color: '#191970', ...getTowerIcon('caesar_icon') },
+    { id: 'lightning_spire_w', name: 'Lightning Spire Core', cost: 4975, damage: 100, range: 200, rate: 50, chain: 5, color: '#FFD700', ...getTowerIcon('lightning_spire_icon') }
+
   ],
   accessories: [
     { id: 'none', name: 'None', description: 'No accessory.', cost: 0 },
