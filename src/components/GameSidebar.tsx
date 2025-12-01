@@ -4,7 +4,6 @@ import Image from "next/image";
 import { TOWERS } from "@/lib/game-config";
 import type { GameState, TowerData } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import ArsenalAdvisor from "./ArsenalAdvisor";
 
 interface GameSidebarProps {
   gameState: GameState;
@@ -55,10 +54,6 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
       <button onClick={onStartWave} disabled={gameState.waveActive} style={{marginTop: '10px'}}>
         Start Wave
       </button>
-
-      <div style={{marginTop: 'auto'}}>
-        <ArsenalAdvisor gameState={gameState} />
-      </div>
 
     </div>
   );
