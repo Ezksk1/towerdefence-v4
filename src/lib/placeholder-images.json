@@ -55,45 +55,21 @@
       "imageHint": "battle tank"
     },
     {
-      "id": "bradley_ifv_icon",
-      "description": "Icon for Bradley IFV",
-      "imageUrl": "https://images.unsplash.com/photo-1593897513271-4eb3b9e35e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcm1vcmVkJTIwdmVoaWNsZXxlbnwwfHx8fDE3NjQ1NTgwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "armored vehicle"
-    },
-    {
-      "id": "stryker_icon",
-      "description": "Icon for Stryker",
-      "imageUrl": "https://images.unsplash.com/photo-1556772510-117fcfc5fb8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhcm1vcmVkJTIwY2FyfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "armored car"
-    },
-    {
       "id": "apache_icon",
       "description": "Icon for Apache",
       "imageUrl": "https://images.unsplash.com/photo-1613900139747-5b51570627c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdHRhY2slMjBoZWxpY29wdGVyfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "attack helicopter"
     },
     {
-      "id": "f35_icon",
-      "description": "Icon for F-35",
-      "imageUrl": "https://images.unsplash.com/photo-1716360014234-272ef6a68cf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3RlYWx0aCUyMGZpZ2h0ZXJ8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "stealth fighter"
-    },
-    {
-      "id": "f22_icon",
-      "description": "Icon for F-22 Raptor",
-      "imageUrl": "https://images.unsplash.com/photo-1553825661-cf1e41f09a3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxqZXQlMjBmaWdodGVyfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "jet fighter"
-    },
-    {
       "id": "ac130_icon",
       "description": "Icon for AC-130",
-      "imageUrl": "https://images.unsplash.com/photo-1749867052986-532f009179ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxndW5zaGlwJTIwcGxhbmV8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1749867052986-532f009179ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxndW5zaGlwJTIwcGxhbmV8ZW58MHx8fHwxNzY0NTU4MDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "gunship plane"
     },
     {
       "id": "ciws_icon",
       "description": "Icon for CIWS Phalanx",
-      "imageUrl": "https://images.unsplash.com/photo-1705499634002-499e92ed31b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnYXRsaW5nJTIwZ3VufGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1705499634002-499e92ed31b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnYXRsaW5nJTIwZ3VufGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "gatling gun"
     },
     {
@@ -103,22 +79,16 @@
       "imageHint": "missile launcher"
     },
     {
-      "id": "m109_paladin_icon",
-      "description": "Icon for M109 Paladin",
-      "imageUrl": "https://images.unsplash.com/photo-1730208569941-8fc1734bdb4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhcnRpbGxlcnklMjB0YW5rfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "artillery tank"
-    },
-    {
-      "id": "himars_icon",
-      "description": "Icon for HIMARS",
-      "imageUrl": "https://images.unsplash.com/photo-1727896908560-41f75dad9d96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyb2NrZXQlMjB0cnVja3xlbnwwfHx8fDE3NjQ1NTgwNTZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "rocket truck"
-    },
-    {
       "id": "patriot_icon",
       "description": "Icon for Patriot System",
-      "imageUrl": "https://images.unsplash.com/photo-1648281315089-7e54e0c6149c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaXNzaWxlJTIwc3lzdGVtfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1648281315089-7e54e0c6149c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaXNzaWxlJTIwc3lzdGVtfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "missile system"
+    },
+    {
+      "id": "barracks_icon",
+      "description": "Icon for Barracks",
+      "imageUrl": "https://images.unsplash.com/photo-1762151533291-52154db5f44a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaWxpdGFyeSUyMGJ1aWxkaW5nfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "military building"
     },
     {
       "id": "missile_silo_icon",
@@ -133,15 +103,15 @@
       "imageHint": "attack plane"
     },
     {
-      "id": "barracks_icon",
-      "description": "Icon for Barracks",
-      "imageUrl": "https://images.unsplash.com/photo-1762151533291-52154db5f44a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaWxpdGFyeSUyMGJ1aWxkaW5nfGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "military building"
+      "id": "lightning_spire_icon",
+      "description": "Icon for Lightning Spire",
+      "imageUrl": "https://images.unsplash.com/photo-1696351808576-e882b848b93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodG5pbmclMjBzdG9ybXxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "lightning storm"
     },
     {
       "id": "commando_icon",
       "description": "Icon for Commando",
-      "imageUrl": "https://images.unsplash.com/photo-1638000470485-a15502c715ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcGVjaWFsJTIwZm9yY2VzfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1638000470485-a15502c715ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcGVjaWFsJTIwZm9yY2VzfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "special forces"
     },
     {
@@ -185,264 +155,6 @@
       "description": "Icon for Type 10",
       "imageUrl": "https://images.unsplash.com/photo-1755804925900-5f5611be4400?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxqYXBhbmVzZSUyMHRhbmt8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "japanese tank"
-    },
-    {
-      "id": "eagle_usa_icon",
-      "description": "Icon for Eagle",
-      "imageUrl": "https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiYWxkJTIwZWFnbGV8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "bald eagle"
-    },
-    {
-      "id": "panda_china_icon",
-      "description": "Icon for Panda",
-      "imageUrl": "https://images.unsplash.com/photo-1597953601374-1ff2d5640c85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnaWFudCUyMHBhbmRhfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "giant panda"
-    },
-    {
-      "id": "bear_russia_icon",
-      "description": "Icon for Bear",
-      "imageUrl": "https://images.unsplash.com/photo-1475813664016-f6a7ecaee6bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxicm93biUyMGJlYXJ8ZW58MHx8fHwxNzY0NDYyNzc0fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "brown bear"
-    },
-    {
-      "id": "tiger_india_icon",
-      "description": "Icon for Tiger",
-      "imageUrl": "https://images.unsplash.com/photo-1545462616-efed1939219f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxiZW5nYWwlMjB0aWdlcnxlbnwwfHx8fDE3NjQ1MDgxOTJ8MA&ixlibrb-4.1.0&q=80&w=1080",
-      "imageHint": "bengal tiger"
-    },
-    {
-      "id": "kangaroo_aus_icon",
-      "description": "Icon for Kangaroo",
-      "imageUrl": "https://images.unsplash.com/photo-1674293126753-28afe6ff5075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxib3hpbmclMjBrYW5nYXJvb3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "boxing kangaroo"
-    },
-    {
-      "id": "beaver_canada_icon",
-      "description": "Icon for Beaver",
-      "imageUrl": "https://images.unsplash.com/photo-1737934682070-e850e184e064?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjYW5hZGlhbiUyMGJlYXZlcnxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "canadian beaver"
-    },
-    {
-      "id": "lion_uk_icon",
-      "description": "Icon for Lion",
-      "imageUrl": "https://images.unsplash.com/photo-1725078851298-bf647b1bc4ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxicml0aXNoJTIwbGlvbnxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "british lion"
-    },
-    {
-      "id": "dragon_wales_icon",
-      "description": "Icon for Dragon",
-      "imageUrl": "https://images.unsplash.com/photo-1618172775375-054dc107af70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3ZWxzaCUyMGRyYWdvbnxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "welsh dragon"
-    },
-    {
-      "id": "ballista_icon",
-      "description": "Icon for Ballista",
-      "imageUrl": "https://images.unsplash.com/photo-1566182922192-4955b5e4eea9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzaWVnZSUyMHdlYXBvbnxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "siege weapon"
-    },
-    {
-      "id": "ice_icon",
-      "description": "Icon for Ice Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1688587801886-42b9ee4f3daf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpY2UlMjBjcnlzdGFsfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "ice crystal"
-    },
-    {
-      "id": "poison_icon",
-      "description": "Icon for Poison Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1560521166-117ca72366bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0b3hpYyUyMHZpYWx8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "toxic vial"
-    },
-    {
-      "id": "laser_icon",
-      "description": "Icon for Laser Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1577853482772-a42e91221701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsYXNlciUyMGJlYW18ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "laser beam"
-    },
-    {
-      "id": "tesla_icon",
-      "description": "Icon for Tesla Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1628630470704-851b2a73271b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0ZXNsYSUyMGNvaWx8ZW58MHx8fHwxNzY0NTU4ODU4fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "tesla coil"
-    },
-    {
-      "id": "rocket_icon",
-      "description": "Icon for Rocket Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1621522635552-ef52856bd555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm9ja2V0JTIwbWlzc2lsZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "rocket missile"
-    },
-    {
-      "id": "flame_icon",
-      "description": "Icon for Flame Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1526584720376-57b19fffff13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmaXJlYmFsbHxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "fireball"
-    },
-    {
-      "id": "storm_icon",
-      "description": "Icon for Storm Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1696351808576-e882b848b93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodG5pbmclMjBzdG9ybXxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "lightning storm"
-    },
-    {
-      "id": "earth_icon",
-      "description": "Icon for Earth Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1521483222950-08b143f66a1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib3VsZGVyfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "boulder"
-    },
-    {
-      "id": "wind_icon",
-      "description": "Icon for Wind Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1695605117552-f7c3b23e0e21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0b3JuYWRvfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "tornado"
-    },
-    {
-      "id": "buff_icon",
-      "description": "Icon for Buff Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1636911661481-422a05677c0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dXAlMjBhcnJvd3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "up arrow"
-    },
-    {
-      "id": "heal_icon",
-      "description": "Icon for Heal Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1706956517292-71ecfe60de51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoZWFsdGglMjBjcm9zc3xlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "health cross"
-    },
-    {
-      "id": "slow_icon",
-      "description": "Icon for Slow Tower",
-      "imageUrl": "https://images.unsplash.com/photo-1567161291513-d8d58620c5ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbmFpbHxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "snail"
-    },
-    {
-      "id": "minigun_icon",
-      "description": "Icon for Minigun",
-      "imageUrl": "https://images.unsplash.com/photo-1705499633967-bdaa1b2414af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtaW5pZ3VufGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "minigun"
-    },
-    {
-      "id": "railgun_icon",
-      "description": "Icon for Railgun",
-      "imageUrl": "https://picsum.photos/seed/railgun/64/64",
-      "imageHint": "railgun"
-    },
-    {
-      "id": "mortar_icon",
-      "description": "Icon for Mortar",
-      "imageUrl": "https://images.unsplash.com/photo-1668720654472-bffb04c1e146?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW9ydGFyJTIwc2hlbGx8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "mortar shell"
-    },
-    {
-      "id": "gatling_icon",
-      "description": "Icon for Gatling",
-      "imageUrl": "https://images.unsplash.com/photo-1705499633903-7651d7cb1a5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxnYXRsaW5nJTIwZ3VufGVufDB8fHx8MTc2NDU1ODA1Nnww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "gatling gun"
-    },
-    {
-      "id": "plasma_icon",
-      "description": "Icon for Plasma",
-      "imageUrl": "https://images.unsplash.com/photo-1592862037671-e8b981b49dcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbGFzbWElMjBiYWxsfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "plasma ball"
-    },
-    {
-      "id": "quantum_icon",
-      "description": "Icon for Quantum",
-      "imageUrl": "https://images.unsplash.com/photo-1633998860530-d5ebf1e2018e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdG9tfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "atom"
-    },
-    {
-      "id": "gravity_icon",
-      "description": "Icon for Gravity",
-      "imageUrl": "https://images.unsplash.com/photo-1707058665477-560297ffe913?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibGFjayUyMGhvbGV8ZW58MHx8fHwxNzY0NDU1NTE5fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "black hole"
-    },
-    {
-      "id": "void_icon",
-      "description": "Icon for Void",
-      "imageUrl": "https://images.unsplash.com/photo-1489419948219-8c6c80617fad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx2b2lkfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "void"
-    },
-    {
-      "id": "mine_icon",
-      "description": "Icon for Mine Layer",
-      "imageUrl": "https://images.unsplash.com/photo-1722169008860-2530e4db5551?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsYW5kbWluZXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "landmine"
-    },
-    {
-      "id": "wall_icon",
-      "description": "Icon for Wall Gun",
-      "imageUrl": "https://images.unsplash.com/photo-1496268280706-ec91c5e133c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YnJpY2slMjB3YWxsfGVufDB8fHx8MTc2NDUzNDg4OHww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "brick wall"
-    },
-    {
-      "id": "spike_icon",
-      "description": "Icon for Spike Trap",
-      "imageUrl": "https://images.unsplash.com/photo-1605125086734-d1ba9debf32d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcGlrZSUyMHRyYXB8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "spike trap"
-    },
-    {
-      "id": "nuke_icon",
-      "description": "Icon for Nuke",
-      "imageUrl": "https://images.unsplash.com/photo-1660213068289-13663449fa88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bnVjbGVhciUyMGV4cGxvc2lvbnxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "nuclear explosion"
-    },
-    {
-      "id": "omega_icon",
-      "description": "Icon for Omega",
-      "imageUrl": "https://images.unsplash.com/photo-1758383965301-268223671eed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvbWVnYSUyMHN5bWJvbHxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "omega symbol"
-    },
-    {
-      "id": "titan_icon",
-      "description": "Icon for Titan",
-      "imageUrl": "https://images.unsplash.com/photo-1760657061857-2dc900e0719e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnaWFudCUyMHJvYm90fGVufDB8fHx8MTc2NDUxNjAzMnww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "giant robot"
-    },
-    {
-      "id": "mirror_icon",
-      "description": "Icon for Mirror",
-      "imageUrl": "https://images.unsplash.com/photo-1603572298498-848f70a46d29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtaXJyb3J8ZW58MHx8fHwxNzY0NTEzNTA4fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "mirror"
-    },
-    {
-      "id": "vampire_icon",
-      "description": "Icon for Vampire",
-      "imageUrl": "https://images.unsplash.com/photo-1642978533513-8b0f6fbe1de5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx2YW1waXJlJTIwZmFuZ3N8ZW58MHx8fHwxNzY0NTU4ODU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "vampire fangs"
-    },
-    {
-      "id": "swarm_icon",
-      "description": "Icon for Swarm",
-      "imageUrl": "https://images.unsplash.com/photo-1670121179722-285e24647240?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxiZWUlMjBzd2FybXxlbnwwfHx8fDE3NjQ1NTg4NTd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "bee swarm"
-    },
-    {
-      "id": "orbital_icon",
-      "description": "Icon for Orbital",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1574848487348-533aaf72833e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzYXRlbGxpdGV8ZW58MHx8fHwxNzY0NTU4ODU4fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "satellite"
-    },
-    {
-      "id": "timewarp_icon",
-      "description": "Icon for Time Warp",
-      "imageUrl": "https://images.unsplash.com/photo-1657592855270-f4ec1d457e56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2xvY2slMjB3YXJwfGVufDB8fHx8MTc2NDU1ODg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "clock warp"
-    },
-    {
-      "id": "necromancer_icon",
-      "description": "Icon for Necromancer",
-      "imageUrl": "https://images.unsplash.com/photo-1611594150014-1d390f1eb263?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxza3VsbCUyMG1hZ2ljfGVufDB8fHx8MTc2NDU1ODg1OHww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "skull magic"
-    },
-    {
-      "id": "blackhole_icon",
-      "description": "Icon for Black Hole",
-      "imageUrl": "https://images.unsplash.com/photo-1670884307164-a652a34f23da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibGFjayUyMGhvbGV8ZW58MHx8fHwxNzY0NDU1NTE5fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "black hole"
-    },
-    {
-      "id": "lightning_spire_icon",
-      "description": "Icon for Lightning Spire",
-      "imageUrl": "https://images.unsplash.com/photo-1696351808576-e882b848b93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodG5pbmclMjBzdG9ybXxlbnwwfHx8fDE3NjQ1NTg4NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "lightning storm"
     }
   ]
 }

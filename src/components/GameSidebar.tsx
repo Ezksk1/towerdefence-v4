@@ -33,7 +33,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface GameSidebarProps {
   gameState: GameState;
-  onDragStart: (tower: TowerData) => void;
+  onDragStart: (tower: TowerData | DIYTower) => void;
   onStartWave: () => void;
   onPause: () => void;
   onSave: () => void;
@@ -446,5 +446,3 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave, onPau
     </div>
   );
 }
-
-    
