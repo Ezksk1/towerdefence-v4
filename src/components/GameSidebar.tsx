@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { TOWERS } from "@/lib/game-config";
-import type { GameState, TowerData } from "@/lib/types";
+import type { GameState, TowerData, PlacedTower } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { drawRealisticTower } from "@/components/GameBoard";
 
 interface GameSidebarProps {
   gameState: GameState;
@@ -12,12 +13,54 @@ interface GameSidebarProps {
   onStartWave: () => void;
 }
 
+const TowerPreview = ({ tower }: { tower: TowerData }) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas || !tower) return;
+
+        const ctx = canvas.getContext('2d');
+        if(!ctx) return;
+
+        const previewSize = 120;
+        canvas.width = previewSize;
+        canvas.height = previewSize;
+
+        ctx.clearRect(0, 0, previewSize, previewSize);
+
+        const placedTower: PlacedTower = {
+            ...tower,
+            idInGame: 'preview',
+            x: previewSize / 2,
+            y: previewSize / 2,
+            gridX: 0,
+            gridY: 0,
+            cooldown: 0,
+            angle: -Math.PI / 4, // Angled for a better preview
+        };
+        
+        drawRealisticTower(ctx, placedTower);
+
+    }, [tower]);
+
+    return <canvas ref={canvasRef} />;
+}
+
+
 export default function GameSidebar({ gameState, onDragStart, onStartWave }: GameSidebarProps) {
   const [selectedTower, setSelectedTower] = useState<TowerData | null>(null);
 
   const handleTowerClick = (tower: TowerData) => {
     setSelectedTower(tower);
   };
+  
+  useEffect(() => {
+    if(!selectedTower) {
+        setSelectedTower(TOWERS.turret);
+    }
+  }, [selectedTower]);
+
 
   return (
     <div id="sidebar">
@@ -26,7 +69,7 @@ export default function GameSidebar({ gameState, onDragStart, onStartWave }: Gam
 
       {selectedTower && (
         <div id="tower-preview">
-          <Image src={selectedTower.iconUrl} alt={selectedTower.name} width={100} height={100} />
+          <TowerPreview tower={selectedTower} />
           <h3>{selectedTower.name}</h3>
           <p>Cost: ${selectedTower.cost}</p>
           <p>Damage: {selectedTower.damage}</p>

@@ -27,7 +27,7 @@ function lightenColor(color:string, percent:number) {
 }
 
 // Enhanced Realistic Tower Drawing Function
-function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower) {
+export function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower) {
     const x = t.x;
     const y = t.y;
     const color = t.color || '#ccc';

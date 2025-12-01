@@ -177,22 +177,23 @@ h2 {
   background-color: #222;
   border-radius: 6px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#tower-preview img {
-  max-width: 100%;
-  height: auto;
+#tower-preview canvas {
   border-radius: 4px;
   margin-bottom: 5px;
 }
 
 #tower-preview h3 {
-  margin: 0 0 5px;
+  margin: 5px 0;
   color: #fff;
 }
 
 #tower-preview p {
-  margin: 0;
+  margin: 2px 0;
   color: #aaa;
   font-size: 0.8em;
 }
