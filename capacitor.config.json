@@ -1,0 +1,6 @@
+{
+  "appId": "com.ezekiel.game",
+  "appName": "winter tower defence",
+  "webDir": "out",
+  "bundledWebRuntime": false
+}
