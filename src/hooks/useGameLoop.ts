@@ -67,12 +67,12 @@ export function useGameLoop(
 
             // 1. Update Enemies
             let currentPath;
-            if(prev.currentLevel === 5 && customPathPoints.length > 1){
+            if (prev.currentLevel === 5 && customPathPoints.length > 1) {
                 currentPath = rasterizePath(customPathPoints);
             } else {
-                const levelIndex = prev.currentLevel - 1;
-                if (LEVELS[levelIndex]) {
-                    currentPath = LEVELS[levelIndex].path;
+                const levelData = LEVELS.find(l => l.level === prev.currentLevel);
+                if (levelData) {
+                    currentPath = levelData.path;
                 }
             }
             

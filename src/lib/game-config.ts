@@ -103,6 +103,7 @@ export const ENEMIES: Record<string, EnemyData> = {
   tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: '#388E3C', flying: false, size: { width: 35, height: 25 }, type: 'tank' },
   heavy_tank: { id: 'heavy_tank', name: 'Heavy Tank', speed: 0.4, baseHp: 200, hp: (w) => baseHp(w) * 20.0, color: '#1B5E20', flying: false, size: { width: 45, height: 30 }, type: 'heavy_tank' },
   jet: { id: 'jet', name: 'Jet', speed: 4.0, baseHp: 40, hp: (w) => baseHp(w) * 4.0, color: '#455A64', flying: true, size: { width: 30, height: 30 }, type: 'jet' },
+  stealth_bomber: { id: 'stealth_bomber', name: 'Stealth Bomber', speed: 5.0, baseHp: 150, hp: (w) => baseHp(w) * 15.0, color: '#212121', flying: true, size: { width: 40, height: 20 }, type: 'stealth_bomber' },
   boss: { id: 'boss', name: 'Boss', speed: 0.5, baseHp: 1000, hp: (w) => baseHp(w) * 100.0, color: '#C62828', flying: false, size: { width: 50, height: 50 }, type: 'boss' },
   mega_boss: { id: 'mega_boss', name: 'Mega Boss', speed: 0.3, baseHp: 5000, hp: (w) => baseHp(w) * 500.0, color: '#000000', flying: false, size: { width: 80, height: 80 }, type: 'mega_boss' },
   reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 12, hp: (w) => baseHp(w) * 1.2, color: '#795548', flying: false, size: { width: 12, height: 12 }, type: 'reindeer' },
@@ -115,7 +116,7 @@ export const ENEMIES: Record<string, EnemyData> = {
 export function rasterizePath(pathPoints: {x:number, y:number}[]) {
     const path = [];
     if (pathPoints.length === 0) return [];
-    let current = pathPoints[0];
+    let current = {...pathPoints[0]};
     path.push({ ...current });
 
     for (let i = 1; i < pathPoints.length; i++) {
@@ -147,11 +148,17 @@ const impossiblePoints = [
     {x: 0, y: 9}, {x: 2, y: 9}, {x: 2, y: 2}, {x: 27, y: 2}, {x: 27, y: 17}, {x: 2, y: 17}, {x: 2, y: 10}, {x: 29, y: 10}
 ];
 
+const redDawnPoints = [
+    {x: 0, y: 10}, {x: 5, y: 10}, {x: 5, y: 5}, {x: 10, y: 5}, {x: 10, y: 15}, {x: 15, y: 15}, {x: 15, y: 5}, {x: 20, y: 5}, {x: 20, y: 15}, {x: 25, y: 15}, {x: 25, y: 10}, {x: 29, y: 10}
+];
+
+
 export const LEVELS: LevelData[] = [
   { level: 1, name: "The Frontline", path: rasterizePath(frontlinePoints) },
   { level: 2, name: "The Gauntlet", path: rasterizePath(gauntletPoints) },
   { level: 3, name: "Serpentine", path: rasterizePath(serpentinePoints) },
   { level: 4, name: "Winter's Bite (Impossible)", path: rasterizePath(impossiblePoints) },
+  { level: 6, name: "Red Dawn (ARMY)", path: rasterizePath(redDawnPoints) }
 ];
 
 
@@ -187,4 +194,15 @@ export const ENEMIES_BY_WAVE: Record<number, EnemyId[]> = {
   28: [...Array(20).fill('krampus'), ...Array(40).fill('heavy_tank')],
   29: [...Array(10).fill('boss'), ...Array(50).fill('heavy_tank')],
   30: [...Array(1).fill('mega_boss'), ...Array(5).fill('boss'), ...Array(10).fill('krampus')],
+  // Waves for Red Dawn
+  31: [...Array(100).fill('troop')],
+  32: [...Array(50).fill('troop'), ...Array(50).fill('humvee')],
+  33: [...Array(50).fill('humvee'), ...Array(25).fill('tank')],
+  34: [...Array(50).fill('tank'), ...Array(10).fill('heavy_tank')],
+  35: [...Array(25).fill('heavy_tank'), ...Array(25).fill('jet')],
+  36: [...Array(50).fill('jet'), ...Array(10).fill('stealth_bomber')],
+  37: [...Array(100).fill('humvee'), ...Array(50).fill('tank')],
+  38: [...Array(50).fill('heavy_tank'), ...Array(20).fill('stealth_bomber')],
+  39: [...Array(5).fill('boss'), ...Array(50).fill('heavy_tank'), ...Array(50).fill('jet')],
+  40: [...Array(2).fill('mega_boss'), ...Array(20).fill('stealth_bomber'), ...Array(50).fill('heavy_tank')],
 };

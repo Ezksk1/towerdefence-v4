@@ -81,12 +81,12 @@ export default function GameClient() {
         const enemiesForThisSpawn = enemiesToSpawnRef.current.splice(0, groupSize); 
         
         let currentPath;
-        if(prev.currentLevel === 5 && customPathPoints.length > 1){
+        if (prev.currentLevel === 5 && customPathPoints.length > 1) {
             currentPath = rasterizePath(customPathPoints);
         } else {
-            const levelIndex = prev.currentLevel - 1;
-            if (LEVELS[levelIndex]) {
-                currentPath = LEVELS[levelIndex].path;
+            const levelData = LEVELS.find(l => l.level === prev.currentLevel);
+            if (levelData) {
+                currentPath = levelData.path;
             }
         }
 
@@ -132,6 +132,8 @@ export default function GameClient() {
       let waveNumber = prev.wave;
       if(prev.currentLevel === 4) { // Impossible Level
         waveNumber = prev.wave + 25;
+      } else if (prev.currentLevel === 6) { // Army Level
+        waveNumber = prev.wave + 30;
       }
       const waveConfig = ENEMIES_BY_WAVE[waveNumber] || [];
       enemiesToSpawnRef.current = [...waveConfig];
@@ -159,12 +161,12 @@ export default function GameClient() {
     if (!draggingTower) return;
     
     let currentPath;
-    if(gameState.currentLevel === 5 && customPathPoints.length > 1){
+    if (gameState.currentLevel === 5 && customPathPoints.length > 1) {
         currentPath = rasterizePath(customPathPoints);
     } else {
-        const levelIndex = gameState.currentLevel - 1;
-        if (LEVELS[levelIndex]) {
-            currentPath = LEVELS[levelIndex].path;
+        const levelData = LEVELS.find(l => l.level === gameState.currentLevel);
+        if (levelData) {
+            currentPath = levelData.path;
         }
     }
     const isOnPath = currentPath && currentPath.some(p => p.x === gridX && p.y === gridY);
@@ -331,9 +333,9 @@ export default function GameClient() {
       toast({ title: 'Draw Your Path!', description: "Click on the map to create a path for the enemies. Click the 'Draw Path' button again when done."});
     } else {
       setIsDrawingPath(false);
-      const levelIndex = newLevel - 1;
-      if(LEVELS[levelIndex]) {
-        newPath = LEVELS[levelIndex].path;
+      const levelData = LEVELS.find(l => l.level === newLevel);
+      if(levelData) {
+        newPath = levelData.path;
       }
     }
     setGameState({
@@ -341,7 +343,8 @@ export default function GameClient() {
         currentLevel: newLevel,
         decorations: generateDecorations(30, newPath || []),
     });
-    const levelName = newLevel === 5 ? "DIY Map" : (LEVELS[newLevel-1] ? LEVELS[newLevel - 1].name : "Unknown Map");
+    const levelData = LEVELS.find(l => l.level === newLevel);
+    const levelName = newLevel === 5 ? "DIY Map" : (levelData ? levelData.name : "Unknown Map");
     toast({ title: `Game Restarted on ${levelName}!`});
   };
 
@@ -356,9 +359,13 @@ export default function GameClient() {
       else if (prev.gameSpeed === 2) newSpeed = 4;
       else newSpeed = 1;
       
-      toast({ title: `Game speed set to ${newSpeed}x` });
       return {...prev, gameSpeed: newSpeed};
     });
+    // This needs to be outside the setter to avoid the re-render error
+    if (gameState.gameSpeed === 1) newSpeed = 2;
+    else if (gameState.gameSpeed === 2) newSpeed = 4;
+    else newSpeed = 1;
+    toast({ title: `Game speed set to ${newSpeed}x` });
   };
 
   return (

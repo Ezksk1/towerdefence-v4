@@ -345,23 +345,27 @@ export function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy
         ctx.fillStyle = isMega ? '#FFEB3B' : 'red';
         ctx.beginPath(); ctx.arc(-4*s, -12*s, 2*s, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(4*s, -12*s, 2*s, 0, Math.PI * 2); ctx.fill();
-    } else if (e.type === 'jet') {
-        const w = 40 * scale;
-        const h = 16 * scale;
-        ctx.fillStyle = '#37474F';
+    } else if (e.type === 'jet' || e.type === 'stealth_bomber') {
+        const isStealth = e.type === 'stealth_bomber';
+        const w = (isStealth ? 45 : 40) * scale;
+        const h = (isStealth ? 18 : 16) * scale;
+        ctx.fillStyle = isStealth ? '#212121' : '#37474F';
         ctx.beginPath();
-        ctx.moveTo(-w/2, 0);
-        ctx.lineTo(w/4, -h/2);
-        ctx.lineTo(w/2, 0);
-        ctx.lineTo(w/4, h/2);
+        if (isStealth) {
+            ctx.moveTo(-w/2, 0); ctx.lineTo(-w/4, -h/2); ctx.lineTo(w/2, 0); ctx.lineTo(-w/4, h/2);
+        } else {
+            ctx.moveTo(-w/2, 0); ctx.lineTo(w/4, -h/2); ctx.lineTo(w/2, 0); ctx.lineTo(w/4, h/2);
+        }
         ctx.closePath();
         ctx.fill();
 
-        ctx.fillStyle = '#B0BEC5';
-        ctx.fillRect(-w/4, -h/4, w/2, h/2);
+        ctx.fillStyle = isStealth ? '#FF5252' : '#B0BEC5'; // Red cockpit for stealth
+        ctx.fillRect(-w/8, -h/4, w/4, h/2);
 
-        ctx.fillStyle = '#1976D2';
-        ctx.fillRect(w/4, -h/8, w/8, h/4);
+        if (!isStealth) {
+          ctx.fillStyle = '#1976D2';
+          ctx.fillRect(w/4, -h/8, w/8, h/4);
+        }
 
     } else { // Troop, elf, toy soldier
         const w = 12 * scale;
@@ -529,9 +533,9 @@ export default function GameBoard({
     if(gameState.currentLevel === 5 && customPathPoints.length > 1){
         path = rasterizePath(customPathPoints);
     } else {
-        const levelIndex = gameState.currentLevel - 1;
-        if (LEVELS[levelIndex]) {
-            path = LEVELS[levelIndex].path;
+        const levelData = LEVELS.find(l => l.level === gameState.currentLevel);
+        if (levelData) {
+            path = levelData.path;
         }
     }
 

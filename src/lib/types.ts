@@ -82,7 +82,7 @@ export type EnemyId =
   | 'mi24_hind' | 'su25_frogfoot' | 'jet'
   | 'boss' | 'scud_launcher' | 'reindeer'
   | 'elf_warrior' | 'toy_soldier' | 'angry_snowman' | 'krampus'
-  | 'mega_boss';
+  | 'mega_boss' | 'stealth_bomber';
 
 export interface EnemyData {
   id: EnemyId;
