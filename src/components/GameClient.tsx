@@ -28,41 +28,62 @@ export default function GameClient() {
   const [draggingTower, setDraggingTower] = useState<TowerData | null>(null);
   const { toast } = useToast();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const enemiesToSpawnRef = useRef<string[]>([]);
+  const spawnIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const spawnGroup = useCallback(() => {
+    if (enemiesToSpawnRef.current.length === 0) {
+        if(spawnIntervalRef.current) clearInterval(spawnIntervalRef.current);
+        return;
+    }
+
+    setGameState(prev => {
+        const enemiesForThisSpawn = enemiesToSpawnRef.current.splice(0, Math.min(enemiesToSpawnRef.current.length, 5)); // Spawn up to 5 at a time
+        const newEnemies = enemiesForThisSpawn.map((enemyId, index) => {
+            const enemyData = ENEMIES[enemyId];
+            if (!enemyData) return null;
+            const path = LEVELS[prev.currentLevel - 1].path;
+            const totalHp = enemyData.hp(prev.wave);
+            return {
+                ...enemyData,
+                idInGame: `${prev.wave}-${Date.now()}-${index}`,
+                x: path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2 - (index * 15), // Offset spawn
+                y: path[0].y * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT/2,
+                currentHp: totalHp,
+                totalHp: totalHp,
+                pathIndex: 0,
+                active: true,
+                speedFactor: 1,
+                frozenTimer: 0,
+                poisonTimer: 0,
+                poisonDamage: 0,
+            } as ActiveEnemy;
+        }).filter(e => e !== null) as ActiveEnemy[];
+
+        return { ...prev, enemies: [...prev.enemies, ...newEnemies] };
+    });
+  }, [setGameState]);
+
 
   const handleStartWave = useCallback(() => {
     if (gameState.waveActive) return;
 
     setGameState(prev => {
       if (prev.lives <= 0) return prev;
+      
+      const waveConfig = ENEMIES_BY_WAVE[prev.wave] || [];
+      enemiesToSpawnRef.current = [...waveConfig];
 
-      const enemiesToSpawn = (ENEMIES_BY_WAVE[prev.wave] || []).map((enemyId, index) => {
-        const enemyData = ENEMIES[enemyId];
-        const path = LEVELS[prev.currentLevel - 1].path;
-        const totalHp = enemyData.hp(prev.wave);
-        return {
-            ...enemyData,
-            idInGame: `${prev.wave}-${index}`,
-            x: path[0].x * GAME_CONFIG.CELL_WIDTH + GAME_CONFIG.CELL_WIDTH/2,
-            y: path[0].y * GAME_CONFIG.CELL_HEIGHT + GAME_CONFIG.CELL_HEIGHT/2,
-            currentHp: totalHp,
-            totalHp: totalHp,
-            pathIndex: 0,
-            active: true,
-            speedFactor: 1,
-            frozenTimer: 0,
-            poisonTimer: 0,
-            poisonDamage: 0,
-        } as ActiveEnemy;
-      });
+      if(spawnIntervalRef.current) clearInterval(spawnIntervalRef.current);
+      spawnIntervalRef.current = setInterval(spawnGroup, 800); // Spawn a group every 0.8 seconds
 
       return {
           ...prev,
           waveActive: true,
-          enemies: enemiesToSpawn,
           waveTimer: 0,
       };
     });
-  }, [gameState.waveActive, gameState.currentLevel]);
+  }, [gameState.waveActive, spawnGroup]);
 
   useGameLoop(gameState, setGameState, handleStartWave);
 

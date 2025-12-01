@@ -124,6 +124,31 @@ function drawRealisticTower(ctx: CanvasRenderingContext2D, t: PlacedTower) {
     ctx.fill();
 }
 
+function drawChristmasHat(ctx: CanvasRenderingContext2D, x: number, y: number, size: number) {
+    ctx.save();
+    ctx.translate(x, y - size * 1.5);
+
+    // Hat body (red cone)
+    ctx.fillStyle = '#D32F2F';
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-size / 2, size);
+    ctx.lineTo(size / 2, size);
+    ctx.closePath();
+    ctx.fill();
+
+    // White brim
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(-size / 1.8, size, size * 1.1, size * 0.3);
+
+    // White pom-pom
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.25, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+}
+
 function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
     const x = e.x;
     const y = e.y;
@@ -158,7 +183,7 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
         ctx.arc(0, 0, 4, 0, Math.PI * 2);
         ctx.fill();
     } else if (e.type === 'humvee') {
-        ctx.fillStyle = 'rgba(0,0,0,0.4)';
+        ctxfillStyle = 'rgba(0,0,0,0.4)';
         ctx.beginPath();
         ctx.ellipse(0, 0, 16, 10, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -171,16 +196,56 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
         ctx.fillRect(8, -10, 6, 2);
         ctx.fillRect(-14, 8, 6, 2);
         ctx.fillRect(8, 8, 6, 2);
-    } else { // Troop
+    } else if (e.type === 'angry_snowman') {
+        // Body
+        ctx.fillStyle = '#fff';
+        ctx.strokeStyle = '#eee';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(0, 5, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, -8, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Coal eyes and mouth
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+        ctx.arc(-3, -10, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(3, -10, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillRect(-3, -5, 6, 1);
+
+    } else if (e.type === 'krampus') {
+        // Body
+        ctx.fillStyle = '#5D4037';
+        ctx.fillRect(-12, -20, 24, 40);
+        // Head
+        ctx.fillStyle = '#3E2723';
+        ctx.fillRect(-10, -18, 20, 15);
+        // Horns
+        ctx.fillStyle = '#E0E0E0';
+        ctx.beginPath();
+        ctx.moveTo(-8, -18); ctx.quadraticCurveTo(-15, -25, -12, -30); ctx.stroke();
+        ctx.moveTo(8, -18); ctx.quadraticCurveTo(15, -25, 12, -30); ctx.stroke();
+        // Red eyes
+        ctx.fillStyle = 'red';
+        ctx.beginPath(); ctx.arc(-4, -12, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(4, -12, 2, 0, Math.PI * 2); ctx.fill();
+    } else { // Troop, elf, toy soldier
         ctx.fillStyle = 'rgba(0,0,0,0.3)';
         ctx.beginPath();
         ctx.arc(0, 0, 8, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = '#5D4037';
+        ctx.fillStyle = e.color;
         ctx.beginPath();
         ctx.ellipse(0, 0, 10, 5, 0, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = '#3E2723';
+        ctx.fillStyle = lightenColor(e.color, -20);
         ctx.beginPath();
         ctx.arc(0, 0, 5, 0, Math.PI * 2);
         ctx.fill();
@@ -189,6 +254,9 @@ function drawRealisticEnemy(ctx: CanvasRenderingContext2D, e: ActiveEnemy) {
     }
 
     ctx.restore();
+
+    // Draw hat on top of everything else for this enemy
+    drawChristmasHat(ctx, x, y, e.size.width * 0.4);
 
     const hpPct = e.currentHp / e.totalHp;
     ctx.fillStyle = 'rgba(0,0,0,0.5)';

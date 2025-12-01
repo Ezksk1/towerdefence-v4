@@ -61,6 +61,7 @@ export interface TowerData {
   pullForce?: number;
   crit?: number;
   speed?: number;
+  color?: string;
 }
 
 export interface PlacedTower extends TowerData {
@@ -79,7 +80,8 @@ export type EnemyId =
   | 'humvee' | 'btr80' | 'bmp2' | 'apc'
   | 'tank' | 't72' | 't90' | 'heavy_tank'
   | 'mi24_hind' | 'su25_frogfoot' | 'jet'
-  | 'boss' | 'scud_launcher' | 'reindeer';
+  | 'boss' | 'scud_launcher' | 'reindeer'
+  | 'elf_warrior' | 'toy_soldier' | 'angry_snowman' | 'krampus';
 
 export interface EnemyData {
   id: EnemyId;

@@ -20,7 +20,7 @@ export const GAME_CONFIG = {
   CELL_HEIGHT: 40,
   STARTING_LIVES: 20,
   STARTING_MONEY: 250,
-  WAVE_TIMER_DURATION: 10,
+  WAVE_TIMER_DURATION: 15,
 };
 
 export const TOWERS: Record<string, TowerData> = {
@@ -97,10 +97,14 @@ export const TOWERS: Record<string, TowerData> = {
 const baseHp = (wave: number) => 10 + wave * 2;
 
 export const ENEMIES: Record<string, EnemyData> = {
-  troop: { id: 'troop', name: 'Troop', speed: 1.0, baseHp: 10, hp: baseHp, color: 'red', flying: false, size: { width: 10, height: 10 } },
-  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: '#1565C0', flying: false, size: { width: 25, height: 18 } },
-  tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: 'green', flying: false, size: { width: 35, height: 25 } },
-  reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 8, hp: (w) => baseHp(w) * 0.8, color: '#795548', flying: false, size: { width: 10, height: 10 } },
+  troop: { id: 'troop', name: 'Troop', speed: 1.0, baseHp: 10, hp: baseHp, color: '#5D4037', flying: false, size: { width: 10, height: 10 } },
+  humvee: { id: 'humvee', name: 'Humvee', speed: 2.0, baseHp: 25, hp: (w) => baseHp(w) * 2.5, color: '#8D6E63', flying: false, size: { width: 25, height: 18 } },
+  tank: { id: 'tank', name: 'Tank', speed: 0.6, baseHp: 80, hp: (w) => baseHp(w) * 8.0, color: '#388E3C', flying: false, size: { width: 35, height: 25 } },
+  reindeer: { id: 'reindeer', name: 'Reindeer', speed: 1.8, baseHp: 8, hp: (w) => baseHp(w) * 0.8, color: '#795548', flying: false, size: { width: 12, height: 12 } },
+  elf_warrior: { id: 'elf_warrior', name: 'Elf Warrior', speed: 1.5, baseHp: 12, hp: (w) => baseHp(w) * 1.2, color: '#2E7D32', flying: false, size: { width: 10, height: 10 } },
+  toy_soldier: { id: 'toy_soldier', name: 'Toy Soldier', speed: 1.2, baseHp: 15, hp: (w) => baseHp(w) * 1.5, color: '#D32F2F', flying: false, size: { width: 10, height: 10 } },
+  angry_snowman: { id: 'angry_snowman', name: 'Angry Snowman', speed: 0.8, baseHp: 100, hp: (w) => baseHp(w) * 10, color: '#FFFFFF', flying: false, size: { width: 20, height: 20 } },
+  krampus: { id: 'krampus', name: 'Krampus', speed: 1.0, baseHp: 500, hp: (w) => baseHp(w) * 50, color: '#3E2723', flying: false, size: { width: 30, height: 30 } },
 };
 
 export const LEVELS: LevelData[] = [
@@ -134,18 +138,17 @@ const complexPathPoints = [
 ];
 LEVELS[1].path = rasterizePath(complexPathPoints);
 
-
 export const ENEMIES_BY_WAVE: Record<number, EnemyId[]> = {
     1:  [...Array(15).fill('troop'), ...Array(10).fill('reindeer')],
-    2:  [...Array(20).fill('troop'), ...Array(15).fill('reindeer'), ...Array(5).fill('humvee')],
-    3:  [...Array(25).fill('troop'), ...Array(15).fill('reindeer'), ...Array(10).fill('humvee')],
-    4:  [...Array(20).fill('reindeer'), ...Array(15).fill('humvee'), ...Array(5).fill('tank')],
-    5:  [...Array(25).fill('humvee'), ...Array(10).fill('tank')],
-    6:  [...Array(20).fill('humvee'), ...Array(15).fill('tank')],
+    2:  [...Array(10).fill('troop'), ...Array(15).fill('elf_warrior'), ...Array(5).fill('toy_soldier')],
+    3:  [...Array(20).fill('elf_warrior'), ...Array(15).fill('toy_soldier'), ...Array(5).fill('humvee')],
+    4:  [...Array(20).fill('reindeer'), ...Array(15).fill('humvee'), ...Array(5).fill('tank'), ...Array(2).fill('angry_snowman')],
+    5:  [...Array(15).fill('humvee'), ...Array(10).fill('tank'), ...Array(10).fill('toy_soldier')],
+    6:  [...Array(10).fill('humvee'), ...Array(15).fill('tank'), ...Array(5).fill('angry_snowman')],
     7:  [...Array(25).fill('tank')],
-    8:  [...Array(15).fill('tank'), ...Array(20).fill('humvee'), ...Array(20).fill('troop')],
-    9:  [...Array(30).fill('tank'), ...Array(15).fill('humvee')],
-    10: [...Array(40).fill('tank')],
+    8:  [...Array(10).fill('tank'), ...Array(15).fill('humvee'), ...Array(30).fill('troop')],
+    9:  [...Array(30).fill('tank'), ...Array(15).fill('humvee'), ...Array(10).fill('angry_snowman')],
+    10: [...Array(20).fill('tank'), ...Array(1).fill('krampus')],
     11: [...Array(20).fill('troop'), ...Array(20).fill('humvee'), ...Array(15).fill('tank')],
     12: [...Array(30).fill('reindeer'), ...Array(20).fill('humvee')],
     13: [...Array(25).fill('humvee'), ...Array(20).fill('tank')],
@@ -155,5 +158,5 @@ export const ENEMIES_BY_WAVE: Record<number, EnemyId[]> = {
     17: [...Array(40).fill('tank'), ...Array(20).fill('humvee')],
     18: [...Array(50).fill('tank')],
     19: [...Array(60).fill('humvee')],
-    20: [...Array(60).fill('tank'), ...Array(30).fill('humvee')],
+    20: [...Array(40).fill('tank'), ...Array(20).fill('angry_snowman'), ...Array(2).fill('krampus')],
 };
