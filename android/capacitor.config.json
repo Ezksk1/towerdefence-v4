@@ -1,9 +1,0 @@
-{
-  "appId": "com.winter.towerdefence",
-  "appName": "Winter Tower Defence",
-  "webDir": "out",
-  "bundledWebRuntime": false,
-  "android": {
-    "resizeOnFullScreen": false
-  }
-}

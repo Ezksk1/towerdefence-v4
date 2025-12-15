@@ -28,6 +28,41 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+~*
+
+# System
+.modified
+.idx/
+
+# Android/APK build (not needed for npm)
+android/
+release-key.keystore
+*.apk
+*.aab
+
+# Build guides (reference only)
+APK_BUILD_GUIDE.md
+APK_SETUP_COMPLETE.md
+BUILD_STATUS.sh
+PRE_BUILD_CHECKLIST.md
+QUICK_BUILD.txt
+WALKTHROUGH.md
+
+# Distribution archives
+npm-game/
+dist/
+*.tar.gz
+*.zip
+
+# Lock files (optional - use pnpm-lock.yaml)
+package-lock.json
+yarn.lock
 .pnpm-debug.log*
 
 # vercel
